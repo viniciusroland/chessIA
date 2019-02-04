@@ -1,4 +1,5 @@
 class Board {
+
     constructor(x, y) {
         this.width = x,
         this.height = y
@@ -11,7 +12,7 @@ class Board {
                 if(i == j - 6 || i == j - 4 || i == j - 2 || i == j || i == j + 2 || i == j + 4 || i == j + 6) {
                     fill(255)
                 } else {
-                    fill(0)
+                    fill(0, 200, 0)
                 }
                 
                 rect(80 * i, 80 * j, 80, 80);
