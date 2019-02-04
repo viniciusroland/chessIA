@@ -1,4 +1,5 @@
 var board;
+var peca_em_questao;
 var white_pawns = []
 var black_pawns = []
 var black_king;
@@ -13,6 +14,9 @@ var black_horse;
 var white_horse;
 var black_pawn;
 var white_pawn;
+
+var white_pawn_object;
+var black_pawn_object;
 function preload() {
     black_king = loadImage("ChessPieces/black_king.png")
     white_king = loadImage("ChessPieces/white_king.png")
@@ -27,6 +31,29 @@ function preload() {
     black_pawn= loadImage("ChessPieces/black_pawn.png")
     white_pawn= loadImage("ChessPieces/white_pawn.png")
 }
+var contador = 0;
+var white_tower_object;
+var clicado;
+
+function mousePressed() {
+    contador++;
+    if (contador == 1 && peca_em_questao == 'primeira torre branca') {
+        console.log('peguei')
+        clicado = true;
+    } else if (contador == 2) {
+        console.log('soltei')
+        contador = 0
+        clicado = false;
+    }
+    
+
+    //if(mouseX > white_tower_object.x && mouseY < 80 + white_tower_object.y) {
+    //    print(white_tower_object.x, white_tower_object.y)
+    //    console.log('cliquei na primeira torre branca')
+    //}
+}
+
+
 function setup() {
     colorMode(RGB)
     board = new Board(642, 642);
@@ -36,22 +63,16 @@ function setup() {
     board.divideBoard()
     // loading pawns into the board
     for (let i = 0; i < 8; i++) {
-        let white_pawn_object = new Pawn(white_pawn, 80 * i, 80) 
+        white_pawn_object = new Pawn(white_pawn, 80 * i, 80) 
         white_pawn_object.display()
         white_pawns.push(white_pawn_object)
 
-        let black_pawn_object = new Pawn(black_pawn, 80 * i, 480)
+        black_pawn_object = new Pawn(black_pawn, 80 * i, 480)
         black_pawn_object.display()
         black_pawns.push(black_pawn_object)
 
     }
 
-    //loading other pieces into the board
-    //for (let i = 0; i < 2; i++) {
-    //    let white_king_object = new King(white_king, 320, 0)
-    //    white_king_object.display()
-
-    //}
     let white_king_object = new King(white_king, 320, 0)
     white_king_object.display()
 
@@ -60,7 +81,7 @@ function setup() {
 
 
     for (let i = 0; i < 2; i++) {
-        let white_tower_object = new Tower(white_tower, i * 560, 0)
+        white_tower_object = new Tower(white_tower, i * 560, 0)
         white_tower_object.display()
 
         let black_tower_object = new Tower(black_tower, i * 560, 560)
@@ -91,7 +112,14 @@ function draw() {
 
     //createCanvas(board.width, board.height) 
     //background(51)
-
+    //deixar o divideBoard para nao ficar infinitas imagens desenhadas
     //board.divideBoard()
+    //fazer todos os diplay e verify_click das outras classes e coloca-los aqui na funcao draw()
 
+    white_pawn_object.display()
+
+    black_pawn_object.display()
+
+    white_tower_object.verify_click()
+    white_tower_object.display(clicado)
 }
