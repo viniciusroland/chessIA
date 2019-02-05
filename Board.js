@@ -1,8 +1,10 @@
 class Board {
 
-    constructor(x, y) {
+    constructor(x, y, tabuleiro) {
+        this.board = tabuleiro
         this.width = x,
         this.height = y
+        console.log(this.board)
     }
 
     divideBoard() {

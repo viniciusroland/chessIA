@@ -1,5 +1,6 @@
 class Queen {
      constructor(image, x, y) {
+         this.name = this.constructor.name
          this.img = image
          this.x = x
          this.y = y

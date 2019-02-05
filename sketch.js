@@ -27,6 +27,13 @@ var white_horse;
 var black_pawn;
 var white_pawn;
 
+function removeAr(array, item) {
+    var index = array.indexOf(item);
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
+}
+
 function preload() {
     black_king = loadImage("ChessPieces/black_king.png")
     white_king = loadImage("ChessPieces/white_king.png")
@@ -43,89 +50,201 @@ function preload() {
 }
 
 function mousePressed() {
-    white_kings[0].verify_click()
-    black_kings[0].verify_click()
-
-    white_queens[0].verify_click()
-    black_queens[0].verify_click()
-    for(let i = 0; i < 8; i++) {
-        white_pawns[i].verify_click()
+    for(let i = 0; i < black_pawns.length; i++) {
         black_pawns[i].verify_click()
     }
+    for(let i = 0; i < white_pawns.length; i++) {
+        white_pawns[i].verify_click()
+    } 
 
-    for(let i = 0; i < 2; i++) {
+
+    for(let i = 0; i < white_towers.length; i++) {
         white_towers[i].verify_click()
+    } 
+    for(let i = 0; i < black_towers.length; i++) {
         black_towers[i].verify_click()
+    }
 
+
+    for(let i = 0; i < white_horses.length; i++) {
         white_horses[i].verify_click()
+    } 
+    for(let i = 0; i < black_horses.length; i++) {
         black_horses[i].verify_click()
+    }
 
+    for(let i = 0; i < white_bishops.length; i++) {
         white_bishops[i].verify_click()
+    } 
+    for(let i = 0; i < black_bishops.length; i++) {
         black_bishops[i].verify_click()
-        
+    }
+
+    for(let i = 0; i < black_kings.length; i++) {
+        black_kings[i].verify_click()
+    } 
+    for(let i = 0; i < white_kings.length; i++) {
+        white_kings[i].verify_click()
     }
     
+    for(let i = 0; i < black_queens.length; i++) {
+        black_queens[i].verify_click()
+    } 
+    for(let i = 0; i < white_queens.length; i++) {
+        white_queens[i].verify_click()
+    }
     
 }
-
+var tabuleiro = [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7'],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+]
+console.log(tabuleiro)
 
 function setup() {
     colorMode(RGB)
-    board = new Board(642, 642);
+    
+    var tile_size = 80;
+    var border = 2;
+
+    //board = new Board(8 * tile_size + 2, 8 * tile_size + 2);
+    //createCanvas(board.width, board.height) 
+    //background(51)
+
+    //board.divideBoard()
+    for (let i = 0; i < 8; i++) {
+        let pawn_w = new Pawn(white_pawn, 80 * i, 80)
+        let pawn_b = new Pawn(black_pawn, 80 * i, 480)
+
+        tabuleiro[1][i] = pawn_w
+        tabuleiro[6][i] = pawn_b
+
+        white_pawns.push(pawn_w)
+        black_pawns.push(pawn_b)
+
+    }
+
+    let king_w = new King(white_king, 320, 0)
+    tabuleiro[0][4] = king_w
+    white_kings.push(king_w)
+
+    let king_b = new King(black_king, 320, 560)
+    tabuleiro[7][4] = king_b
+    black_kings.push(king_b)
+
+
+    for (let i = 0; i < 2; i++) {
+        let tower_w = new Tower(white_tower, i * 560, 0)
+        let tower_b = new Tower(black_tower, i * 560, 560)
+
+        tabuleiro[0][i * 7] = tower_w
+        tabuleiro[7][i * 7] = tower_b
+
+        white_towers.push(tower_w)
+        black_towers.push(tower_b)
+
+        let horse_w = new Horse(white_horse, 480 - 400 * i, 0)
+        let horse_b = new Horse(black_horse, 480 - 400 * i, 560)
+
+        tabuleiro[0][6 - i * 5] = horse_w
+        tabuleiro[7][6 - i * 5] = horse_b
+
+        white_horses.push(horse_w)
+        black_horses.push(horse_b)
+
+        let bishop_w = new Bishop(white_bishop, 400 - 240 * i, 0)
+        let bishop_b = new Bishop(black_bishop, 400 - 240 * i, 560)
+
+        tabuleiro[0][5 - 3 * i] = bishop_w
+        tabuleiro[7][5 - 3 * i] = bishop_b
+
+        white_bishops.push(bishop_w)
+        black_bishops.push(bishop_b)
+
+    }
+    let queen_w = new Queen(white_queen, 240, 0)
+    tabuleiro[0][3] = queen_w
+    white_queens.push(queen_w)
+
+    let queen_b = new Queen(black_queen, 240, 560)
+    tabuleiro[7][3] = queen_b
+    black_queens.push(queen_b)
+
+    board = new Board(8 * tile_size + 2, 8 * tile_size + 2, tabuleiro);
     createCanvas(board.width, board.height) 
     background(51)
 
     board.divideBoard()
-    for (let i = 0; i < 8; i++) {
-        white_pawns.push(new Pawn(white_pawn, 80 * i, 80))
-        black_pawns.push(new Pawn(black_pawn, 80 * i, 480))
-
-    }
-
-    white_kings.push(new King(white_king, 320, 0))
-    black_kings.push(new King(black_king, 320, 560))
-
-
-    for (let i = 0; i < 2; i++) {
-        white_towers.push(new Tower(white_tower, i * 560, 0))
-        black_towers.push(new Tower(black_tower, i * 560, 560))
-
-        white_horses.push(new Horse(white_horse, 480 - 400 * i, 0))
-        black_horses.push(new Horse(black_horse, 480 - 400 * i, 560))
-
-        white_bishops.push(new Bishop(white_bishop, 400 - 240 * i, 0))
-        black_bishops.push(new Bishop(black_bishop, 400 - 240 * i, 560))
-
-    }
-    white_queens.push(new Queen(white_queen, 240, 0))
-    black_queens.push(new Queen(black_queen, 240, 560))
-
 }
+
 
 function draw() {
     background(51)
     board.divideBoard()
 
-    for(let i = 0; i < 8; i++) {
+    for(let i = 0; i < white_pawns.length; i++) {
         white_pawns[i].display()
-        black_pawns[i].display()
-
     } 
-    for(let i = 0; i < 2; i++) {
-        white_towers[i].display()
-        black_towers[i].display()
-
-        white_horses[i].display()
-        black_horses[i].display()
-
-        white_bishops[i].display()
-        black_bishops[i].display()
-        
+    for(let i = 0; i < black_pawns.length; i++) {
+        black_pawns[i].display()
     }
-    white_kings[0].display()
-    black_kings[0].display()
 
-    white_queens[0].display()
-    black_queens[0].display()
+
+    for(let i = 0; i < white_towers.length; i++) {
+        white_towers[i].display()
+    } 
+    for(let i = 0; i < black_towers.length; i++) {
+        black_towers[i].display()
+    }
+
+
+    for(let i = 0; i < white_horses.length; i++) {
+        white_horses[i].display()
+    } 
+    for(let i = 0; i < black_horses.length; i++) {
+        black_horses[i].display()
+    }
+
+    for(let i = 0; i < white_bishops.length; i++) {
+        white_bishops[i].display()
+    } 
+    for(let i = 0; i < black_bishops.length; i++) {
+        black_bishops[i].display()
+    }
+    //for(let i = 0; i < 2; i++) {
+    //    white_towers[i].display()
+    //    black_towers[i].display()
+
+    //    white_horses[i].display()
+    //    black_horses[i].display()
+
+    //    white_bishops[i].display()
+    //    black_bishops[i].display()
+    //    
+    //}
+    for(let i = 0; i < white_kings.length; i++) {
+        white_kings[i].display()
+    } 
+    for(let i = 0; i < black_kings.length; i++) {
+        black_kings[i].display()
+    }
+    
+    //white_kings[0].display()
+    //black_kings[0].display()
+
+    for(let i = 0; i < white_queens.length; i++) {
+        white_queens[i].display()
+    } 
+    for(let i = 0; i < black_queens.length; i++) {
+        black_queens[i].display()
+    }
+    //white_queens[0].display()
+    //black_queens[0].display()
 }
 
