@@ -1,7 +1,19 @@
 var board;
 var peca_em_questao;
+
 var white_pawns = []
 var black_pawns = []
+var black_kings = []
+var white_kings = []
+var black_queens = []
+var white_queens = []
+var black_bishops = []
+var white_bishops = []
+var black_towers = []
+var white_towers = []
+var black_horses = []
+var white_horses = []
+
 var black_king;
 var white_king;
 var black_queen;
@@ -15,8 +27,6 @@ var white_horse;
 var black_pawn;
 var white_pawn;
 
-var white_pawn_object;
-var black_pawn_object;
 function preload() {
     black_king = loadImage("ChessPieces/black_king.png")
     white_king = loadImage("ChessPieces/white_king.png")
@@ -31,26 +41,31 @@ function preload() {
     black_pawn= loadImage("ChessPieces/black_pawn.png")
     white_pawn= loadImage("ChessPieces/white_pawn.png")
 }
-var contador = 0;
-var white_tower_object;
-var clicado;
 
 function mousePressed() {
-    contador++;
-    if (contador == 1 && peca_em_questao == 'primeira torre branca') {
-        console.log('peguei')
-        clicado = true;
-    } else if (contador == 2) {
-        console.log('soltei')
-        contador = 0
-        clicado = false;
+    white_kings[0].verify_click()
+    black_kings[0].verify_click()
+
+    white_queens[0].verify_click()
+    black_queens[0].verify_click()
+    for(let i = 0; i < 8; i++) {
+        white_pawns[i].verify_click()
+        black_pawns[i].verify_click()
+    }
+
+    for(let i = 0; i < 2; i++) {
+        white_towers[i].verify_click()
+        black_towers[i].verify_click()
+
+        white_horses[i].verify_click()
+        black_horses[i].verify_click()
+
+        white_bishops[i].verify_click()
+        black_bishops[i].verify_click()
+        
     }
     
-
-    //if(mouseX > white_tower_object.x && mouseY < 80 + white_tower_object.y) {
-    //    print(white_tower_object.x, white_tower_object.y)
-    //    console.log('cliquei na primeira torre branca')
-    //}
+    
 }
 
 
@@ -61,65 +76,56 @@ function setup() {
     background(51)
 
     board.divideBoard()
-    // loading pawns into the board
     for (let i = 0; i < 8; i++) {
-        white_pawn_object = new Pawn(white_pawn, 80 * i, 80) 
-        white_pawn_object.display()
-        white_pawns.push(white_pawn_object)
-
-        black_pawn_object = new Pawn(black_pawn, 80 * i, 480)
-        black_pawn_object.display()
-        black_pawns.push(black_pawn_object)
+        white_pawns.push(new Pawn(white_pawn, 80 * i, 80))
+        black_pawns.push(new Pawn(black_pawn, 80 * i, 480))
 
     }
 
-    let white_king_object = new King(white_king, 320, 0)
-    white_king_object.display()
-
-    let black_king_object = new King(black_king, 320, 560)
-    black_king_object.display()
+    white_kings.push(new King(white_king, 320, 0))
+    black_kings.push(new King(black_king, 320, 560))
 
 
     for (let i = 0; i < 2; i++) {
-        white_tower_object = new Tower(white_tower, i * 560, 0)
-        white_tower_object.display()
+        white_towers.push(new Tower(white_tower, i * 560, 0))
+        black_towers.push(new Tower(black_tower, i * 560, 560))
 
-        let black_tower_object = new Tower(black_tower, i * 560, 560)
-        black_tower_object.display()
+        white_horses.push(new Horse(white_horse, 480 - 400 * i, 0))
+        black_horses.push(new Horse(black_horse, 480 - 400 * i, 560))
 
-        let white_horse_object = new Horse(white_horse, 480 - 400 * i, 0)
-        white_horse_object.display()
-
-        let black_horse_object = new Horse(black_horse, 480 - 400 * i, 560)
-        black_horse_object.display()
-
-        let white_bishop_object = new Bishop(white_bishop, 400 - 240 * i, 0)
-        white_bishop_object.display()
-
-        let black_bishop_object = new Bishop(black_bishop, 400 - 240 * i, 560)
-        black_bishop_object.display()
+        white_bishops.push(new Bishop(white_bishop, 400 - 240 * i, 0))
+        black_bishops.push(new Bishop(black_bishop, 400 - 240 * i, 560))
 
     }
-    let white_queen_object = new Queen(white_queen, 240, 0)
-    white_queen_object.display()
-
-    let black_queen_object = new Queen(black_queen, 240, 560)
-    black_queen_object.display()
+    white_queens.push(new Queen(white_queen, 240, 0))
+    black_queens.push(new Queen(black_queen, 240, 560))
 
 }
 
 function draw() {
+    background(51)
+    board.divideBoard()
 
-    //createCanvas(board.width, board.height) 
-    //background(51)
-    //deixar o divideBoard para nao ficar infinitas imagens desenhadas
-    //board.divideBoard()
-    //fazer todos os diplay e verify_click das outras classes e coloca-los aqui na funcao draw()
+    for(let i = 0; i < 8; i++) {
+        white_pawns[i].display()
+        black_pawns[i].display()
 
-    white_pawn_object.display()
+    } 
+    for(let i = 0; i < 2; i++) {
+        white_towers[i].display()
+        black_towers[i].display()
 
-    black_pawn_object.display()
+        white_horses[i].display()
+        black_horses[i].display()
 
-    white_tower_object.verify_click()
-    white_tower_object.display(clicado)
+        white_bishops[i].display()
+        black_bishops[i].display()
+        
+    }
+    white_kings[0].display()
+    black_kings[0].display()
+
+    white_queens[0].display()
+    black_queens[0].display()
 }
+
