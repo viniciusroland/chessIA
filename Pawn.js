@@ -25,8 +25,8 @@ class Pawn {
             board.remove_from_old_position(this.x, this.y)
             this.x = mouseX - 40
             this.y = mouseY - 40
-            this.contador = 0
             board.move_to_new_position(mouseX, mouseY, this) 
+            this.contador = 0
         }
     }
 
