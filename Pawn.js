@@ -26,7 +26,6 @@ class Pawn {
             this.x = mouseX - 40
             this.y = mouseY - 40
             this.contador = 0
-            console.log(mouseX, mouseY)
             board.move_to_new_position(mouseX, mouseY, this) 
         }
     }
