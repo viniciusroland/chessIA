@@ -4,7 +4,7 @@ class Pawn {
         this.x = x
         this.y = y
         this.clicado = false;
-        console.log('Pawn', this.x, this.y)
+        this.contador = 0
     }
      display() {
          if(!this.clicado) {
@@ -18,8 +18,13 @@ class Pawn {
     verify_click() {
         if(mouseX > this.x && mouseX < this.x + 80 && mouseY > this.y && mouseY < this.y + 80) {
             this.clicado = true
-        } else {
+            this.contador++
+        } else if(this.contador == 1) {
             this.clicado = false
+            this.x = mouseX - 40
+            this.y = mouseY - 40
+            this.contador = 0
+            
         }
     }
 }

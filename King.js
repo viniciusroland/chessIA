@@ -4,6 +4,7 @@ class King {
            this.x = x
            this.y = y
            this.clicado = false
+           this.contador = 0
        }
    
      display() {
@@ -18,8 +19,13 @@ class King {
     verify_click() {
         if(mouseX > this.x && mouseX < this.x + 80 && mouseY > this.y && mouseY < this.y + 80) {
             this.clicado = true
-        } else {
+            this.contador++
+        } else if(this.contador == 1) {
             this.clicado = false
+            this.x = mouseX - 40
+            this.y = mouseY - 40
+            this.contador = 0
+            
         }
     }
   
