@@ -22,31 +22,30 @@ class Board {
 
         }
     }
+
     move_to_new_position(x, y, piece) {
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
                 if (x > j * 80 && x < j * 80 + 80 && y > i * 80 && y < i * 80 + 80) {
-                    var posicao_nova = [i, j]
+                    var posicao_nova = createVector(i, j)
                 }
             }
         }
-
-        console.log('posicao_nova', posicao_nova)
-        this.board[posicao_nova[0]][posicao_nova[1]] = piece
-        console.log(this.board)
+        console.log(posicao_nova) 
+        piece.board_coords = posicao_nova
+        this.board[posicao_nova.x][posicao_nova.y] = piece
+        console.log("Tabuleiro atual:", this.board)
     }   
 
     remove_from_old_position(x, y) {
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
                 if (x >= j * 80 && x <= j * 80 + 80 && y >= i * 80 && y <= i * 80 + 80) {
-                    var posicao_antiga = [i, j]
+                    var posicao_antiga = createVector(i, j) 
                 }
             }
         }
 
-        console.log('posicao_antiga', posicao_antiga)
-        this.board[posicao_antiga[0]][posicao_antiga[1]] = 0
-        console.log(this.board)
+        this.board[posicao_antiga.x][posicao_antiga.y] = 0
     }   
 }

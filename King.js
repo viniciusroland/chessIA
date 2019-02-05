@@ -1,16 +1,23 @@
 class King {
-       constructor(image, x, y) {
-           this.name = this.constructor.name
-           this.img = image
-           this.x = x
-           this.y = y
-           this.clicado = false
-           this.contador = 0
-       }
+    constructor(image, x, y) {
+        this.name = this.constructor.name
+        this.img = image
+        this.x = x
+        this.y = y
+        this.clicado = false
+        this.contador = 0
+        this.board_coords;
+    }
    
-     display() {
-         if(!this.clicado) {
-            image(this.img, this.x, this.y, 80, 80)
+    display() {
+        if(!this.clicado) {
+        //image(this.img, this.x, this.y, 80, 80)
+            if(this.board_coords != undefined) {
+                image(this.img, this.board_coords.y * 80, this.board_coords.x * 80, 80, 80)
+             } else {
+                image(this.img, this.x, this.y, 80, 80)
+             }
+
          } else {
              image(this.img, mouseX - 60, mouseY - 60, 120, 120)
          }
