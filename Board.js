@@ -2,7 +2,7 @@ class Board {
 
     constructor(x, y, tabuleiro) {
         this.board = tabuleiro
-        this.width = x,
+        this.width = x
         this.height = y
     }
 

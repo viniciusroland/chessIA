@@ -48,6 +48,8 @@ function preload() {
     black_pawn= loadImage("ChessPieces/black_pawn.png")
     white_pawn= loadImage("ChessPieces/white_pawn.png")
 }
+var rodada = 'black';
+var clicks = 0;
 
 function mousePressed() {
     for(let i = 0; i < black_pawns.length; i++) {
@@ -113,8 +115,8 @@ function setup() {
     var border = 2;
 
     for (let i = 0; i < 8; i++) {
-        let pawn_w = new Pawn(white_pawn, 80 * i, 80)
-        let pawn_b = new Pawn(black_pawn, 80 * i, 480)
+        let pawn_w = new Pawn(white_pawn, 80 * i, 80, 'white')
+        let pawn_b = new Pawn(black_pawn, 80 * i, 480, 'black')
 
         tabuleiro[1][i] = pawn_w
         tabuleiro[6][i] = pawn_b
@@ -124,18 +126,18 @@ function setup() {
 
     }
 
-    let king_w = new King(white_king, 320, 0)
+    let king_w = new King(white_king, 320, 0, 'white')
     tabuleiro[0][4] = king_w
     white_kings.push(king_w)
 
-    let king_b = new King(black_king, 320, 560)
+    let king_b = new King(black_king, 320, 560, 'black')
     tabuleiro[7][4] = king_b
     black_kings.push(king_b)
 
 
     for (let i = 0; i < 2; i++) {
-        let tower_w = new Tower(white_tower, i * 560, 0)
-        let tower_b = new Tower(black_tower, i * 560, 560)
+        let tower_w = new Tower(white_tower, i * 560, 0, 'white')
+        let tower_b = new Tower(black_tower, i * 560, 560, 'black')
 
         tabuleiro[0][i * 7] = tower_w
         tabuleiro[7][i * 7] = tower_b
@@ -143,8 +145,8 @@ function setup() {
         white_towers.push(tower_w)
         black_towers.push(tower_b)
 
-        let horse_w = new Horse(white_horse, 480 - 400 * i, 0)
-        let horse_b = new Horse(black_horse, 480 - 400 * i, 560)
+        let horse_w = new Horse(white_horse, 480 - 400 * i, 0, 'white')
+        let horse_b = new Horse(black_horse, 480 - 400 * i, 560, 'black')
 
         tabuleiro[0][6 - i * 5] = horse_w
         tabuleiro[7][6 - i * 5] = horse_b
@@ -152,8 +154,8 @@ function setup() {
         white_horses.push(horse_w)
         black_horses.push(horse_b)
 
-        let bishop_w = new Bishop(white_bishop, 400 - 240 * i, 0)
-        let bishop_b = new Bishop(black_bishop, 400 - 240 * i, 560)
+        let bishop_w = new Bishop(white_bishop, 400 - 240 * i, 0, 'white')
+        let bishop_b = new Bishop(black_bishop, 400 - 240 * i, 560, 'black')
 
         tabuleiro[0][5 - 3 * i] = bishop_w
         tabuleiro[7][5 - 3 * i] = bishop_b
@@ -162,11 +164,11 @@ function setup() {
         black_bishops.push(bishop_b)
 
     }
-    let queen_w = new Queen(white_queen, 240, 0)
+    let queen_w = new Queen(white_queen, 240, 0, 'white')
     tabuleiro[0][3] = queen_w
     white_queens.push(queen_w)
 
-    let queen_b = new Queen(black_queen, 240, 560)
+    let queen_b = new Queen(black_queen, 240, 560, 'black')
     tabuleiro[7][3] = queen_b
     black_queens.push(queen_b)
 
