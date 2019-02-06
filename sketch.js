@@ -50,51 +50,78 @@ function preload() {
 }
 var rodada = 'black';
 var clicks = 0;
+var piece_clicked;
 
-function mousePressed() {
-    for(let i = 0; i < black_pawns.length; i++) {
-        black_pawns[i].verify_click()
+function mousePressed() { 
+
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            if (mouseX > j * 80 && mouseX < j * 80 + 80 && mouseY > i * 80 && mouseY < i * 80 + 80) {
+                var indexX = i
+                var indexY = j
+            }
+        }
     }
-    for(let i = 0; i < white_pawns.length; i++) {
-        white_pawns[i].verify_click()
-    } 
+    if(piece_clicked == undefined || piece_clicked == 0) {
+        piece_clicked = board.board[indexX][indexY]
 
-
-    for(let i = 0; i < white_towers.length; i++) {
-        white_towers[i].verify_click()
-    } 
-    for(let i = 0; i < black_towers.length; i++) {
-        black_towers[i].verify_click()
     }
-
-
-    for(let i = 0; i < white_horses.length; i++) {
-        white_horses[i].verify_click()
-    } 
-    for(let i = 0; i < black_horses.length; i++) {
-        black_horses[i].verify_click()
+    if(piece_clicked == 0) {
+        return
     }
 
-    for(let i = 0; i < white_bishops.length; i++) {
-        white_bishops[i].verify_click()
-    } 
-    for(let i = 0; i < black_bishops.length; i++) {
-        black_bishops[i].verify_click()
+    if(piece_clicked != 0) {
+        piece_clicked.verify_click()
+        clicks++
+    }
+    if(clicks == 2) {
+        piece_clicked = undefined
+        clicks = 0
     }
 
-    for(let i = 0; i < black_kings.length; i++) {
-        black_kings[i].verify_click()
-    } 
-    for(let i = 0; i < white_kings.length; i++) {
-        white_kings[i].verify_click()
-    }
-    
-    for(let i = 0; i < black_queens.length; i++) {
-        black_queens[i].verify_click()
-    } 
-    for(let i = 0; i < white_queens.length; i++) {
-        white_queens[i].verify_click()
-    }
+    //for(let i = 0; i < black_pawns.length; i++) {
+    //    black_pawns[i].verify_click()
+    //}
+    //for(let i = 0; i < white_pawns.length; i++) {
+    //    white_pawns[i].verify_click()
+    //} 
+
+
+    //for(let i = 0; i < white_towers.length; i++) {
+    //    white_towers[i].verify_click()
+    //} 
+    //for(let i = 0; i < black_towers.length; i++) {
+    //    black_towers[i].verify_click()
+    //}
+
+
+    //for(let i = 0; i < white_horses.length; i++) {
+    //    white_horses[i].verify_click()
+    //} 
+    //for(let i = 0; i < black_horses.length; i++) {
+    //    black_horses[i].verify_click()
+    //}
+
+    //for(let i = 0; i < white_bishops.length; i++) {
+    //    white_bishops[i].verify_click()
+    //} 
+    //for(let i = 0; i < black_bishops.length; i++) {
+    //    black_bishops[i].verify_click()
+    //}
+
+    //for(let i = 0; i < black_kings.length; i++) {
+    //    black_kings[i].verify_click()
+    //} 
+    //for(let i = 0; i < white_kings.length; i++) {
+    //    white_kings[i].verify_click()
+    //}
+    //
+    //for(let i = 0; i < black_queens.length; i++) {
+    //    black_queens[i].verify_click()
+    //} 
+    //for(let i = 0; i < white_queens.length; i++) {
+    //    white_queens[i].verify_click()
+    //}
     
 }
 var tabuleiro = [

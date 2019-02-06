@@ -31,9 +31,11 @@ class Pawn {
             this.clicado = true
             this.contador++
             if(this.contador == 2) {
+                //move peca para posicao nova
                 this.move_piece()
             }
         } else if(this.contador == 1) {
+            //volta peca para posicao inicial 
             this.move_piece()
         }
     }
@@ -45,13 +47,13 @@ class Pawn {
         this.y = mouseY - 25
         new_position = board.move_to_new_position(mouseX, mouseY, this) 
 
-        this.contador = 0
-        this.clicado = false
-        if(rodada == 'white') {
+        if(rodada == 'white' && this.contador != 2) {
             rodada = 'black'
-        } else if(rodada == 'black') {
+        } else if(rodada == 'black' && this.contador != 2) {
             rodada = 'white'
         }
+        this.contador = 0
+        this.clicado = false
     }
 }
 

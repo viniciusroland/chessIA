@@ -44,13 +44,13 @@ class Horse {
         this.y = mouseY - 25
         new_position = board.move_to_new_position(mouseX, mouseY, this) 
 
-        this.contador = 0
-        this.clicado = false
-        if(rodada == 'white') {
+        if(rodada == 'white' && this.contador != 2) {
             rodada = 'black'
-        } else if(rodada == 'black') {
+        } else if(rodada == 'black' && this.contador != 2) {
             rodada = 'white'
         }
+        this.contador = 0
+        this.clicado = false
     }
 
  
