@@ -1,3 +1,5 @@
+var old_position;
+var new_position;
 class Pawn {
     constructor(image, x, y) {
         this.name = this.constructor.name
@@ -29,14 +31,13 @@ class Pawn {
             this.contador++
         } else if(this.contador == 1) {
             this.clicado = false
-            board.remove_from_old_position(this.x, this.y)
+            old_position = board.remove_from_old_position(this.x, this.y)
             this.x = mouseX - 40
             this.y = mouseY - 40
-            board.move_to_new_position(mouseX, mouseY, this) 
+            new_position = board.move_to_new_position(mouseX, mouseY, this) 
+            //board.eat_pieces(new_position)
             this.contador = 0
         }
     }
-
-
 }
 

@@ -113,11 +113,6 @@ function setup() {
     var tile_size = 80;
     var border = 2;
 
-    //board = new Board(8 * tile_size + 2, 8 * tile_size + 2);
-    //createCanvas(board.width, board.height) 
-    //background(51)
-
-    //board.divideBoard()
     for (let i = 0; i < 8; i++) {
         let pawn_w = new Pawn(white_pawn, 80 * i, 80)
         let pawn_b = new Pawn(black_pawn, 80 * i, 480)
@@ -217,26 +212,13 @@ function draw() {
     for(let i = 0; i < black_bishops.length; i++) {
         black_bishops[i].display()
     }
-    //for(let i = 0; i < 2; i++) {
-    //    white_towers[i].display()
-    //    black_towers[i].display()
 
-    //    white_horses[i].display()
-    //    black_horses[i].display()
-
-    //    white_bishops[i].display()
-    //    black_bishops[i].display()
-    //    
-    //}
     for(let i = 0; i < white_kings.length; i++) {
         white_kings[i].display()
     } 
     for(let i = 0; i < black_kings.length; i++) {
         black_kings[i].display()
     }
-    
-    //white_kings[0].display()
-    //black_kings[0].display()
 
     for(let i = 0; i < white_queens.length; i++) {
         white_queens[i].display()
@@ -244,7 +226,5 @@ function draw() {
     for(let i = 0; i < black_queens.length; i++) {
         black_queens[i].display()
     }
-    //white_queens[0].display()
-    //black_queens[0].display()
 }
 

@@ -33,8 +33,10 @@ class Board {
         }
         console.log(posicao_nova) 
         piece.board_coords = posicao_nova
+        this.eat_pieces(posicao_nova)
         this.board[posicao_nova.x][posicao_nova.y] = piece
         console.log("Tabuleiro atual:", this.board)
+        return posicao_nova;
     }   
 
     remove_from_old_position(x, y) {
@@ -47,5 +49,19 @@ class Board {
         }
 
         this.board[posicao_antiga.x][posicao_antiga.y] = 0
+        return posicao_antiga;
     }   
+
+
+    eat_pieces(at_position) {
+        let piece_in_the_position = this.board[at_position.x][at_position.y]
+        console.log('piece', piece_in_the_position)
+        if(piece_in_the_position != 0) {
+            //deleting piece object in the board table (this.board)
+            this.board[at_position.x][at_position.y] = 0
+            removeAr(white_pawns, piece_in_the_position)
+            removeAr(black_pawns, piece_in_the_position)
+        }
+    }
+    
 }
