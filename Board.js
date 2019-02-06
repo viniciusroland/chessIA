@@ -59,8 +59,31 @@ class Board {
         if(piece_in_the_position != 0) {
             //deleting piece object in the board table (this.board)
             this.board[at_position.x][at_position.y] = 0
-            removeAr(white_pawns, piece_in_the_position)
-            removeAr(black_pawns, piece_in_the_position)
+            if(piece_in_the_position.name == 'Pawn') {
+                removeAr(white_pawns, piece_in_the_position)
+                removeAr(black_pawns, piece_in_the_position)
+
+            } else if(piece_in_the_position.name == 'Tower') {
+                removeAr(white_towers, piece_in_the_position)
+                removeAr(black_towers, piece_in_the_position)
+             
+            } else if(piece_in_the_position.name == 'Horse') {
+                removeAr(white_horses, piece_in_the_position)
+                removeAr(black_horses, piece_in_the_position)
+
+            } else if(piece_in_the_position.name == 'Bishop') {
+                removeAr(white_bishops, piece_in_the_position)
+                removeAr(black_bishops, piece_in_the_position)
+
+            } else if(piece_in_the_position.name == 'Queen') {
+                removeAr(white_queens, piece_in_the_position)
+                removeAr(black_queens, piece_in_the_position)
+
+            } else if(piece_in_the_position.name == 'King') {
+                removeAr(white_kings, piece_in_the_position)
+                removeAr(black_kings, piece_in_the_position)
+            }
+
         }
     }
     

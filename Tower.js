@@ -1,3 +1,5 @@
+var old_position;
+var new_position;
 class Tower {
      constructor(image, x, y) {
          this.name = this.constructor.name
@@ -22,19 +24,27 @@ class Tower {
          }
  
      }
-
     verify_click() {
         if(mouseX > this.x && mouseX < this.x + 80 && mouseY > this.y && mouseY < this.y + 80) {
             this.clicado = true
             this.contador++
+            if(this.contador == 2) {
+                this.move_piece()
+            }
         } else if(this.contador == 1) {
-            this.clicado = false
-            board.remove_from_old_position(this.x, this.y)
-            this.x = mouseX - 40
-            this.y = mouseY - 40
-            board.move_to_new_position(mouseX, mouseY, this) 
-            this.contador = 0
+            this.move_piece()
         }
+    }
+
+
+    move_piece() {
+        old_position = board.remove_from_old_position(this.x, this.y)
+        this.x = mouseX - 40
+        this.y = mouseY - 40
+        new_position = board.move_to_new_position(mouseX, mouseY, this) 
+
+        this.contador = 0
+        this.clicado = false
     }
 
  
