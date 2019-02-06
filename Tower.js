@@ -28,6 +28,7 @@ class Tower {
         if(mouseX > this.x && mouseX < this.x + 80 && mouseY > this.y && mouseY < this.y + 80) {
             this.clicado = true
             this.contador++
+            old_position = board.remove_from_old_position(this.x, this.y)
             if(this.contador == 2) {
                 this.move_piece()
             }
@@ -38,7 +39,7 @@ class Tower {
 
 
     move_piece() {
-        old_position = board.remove_from_old_position(this.x, this.y)
+        //old_position = board.remove_from_old_position(this.x, this.y)
         this.x = mouseX - 25
         this.y = mouseY - 25
         new_position = board.move_to_new_position(mouseX, mouseY, this) 
