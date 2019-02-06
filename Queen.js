@@ -38,8 +38,8 @@ class Queen {
 
     move_piece() {
         old_position = board.remove_from_old_position(this.x, this.y)
-        this.x = mouseX - 40
-        this.y = mouseY - 40
+        this.x = mouseX - 25
+        this.y = mouseY - 25
         new_position = board.move_to_new_position(mouseX, mouseY, this) 
 
         this.contador = 0

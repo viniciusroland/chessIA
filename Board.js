@@ -4,7 +4,6 @@ class Board {
         this.board = tabuleiro
         this.width = x,
         this.height = y
-        console.log(this.board)
     }
 
     divideBoard() {
@@ -31,11 +30,10 @@ class Board {
                 }
             }
         }
-        console.log(posicao_nova) 
-        piece.board_coords = posicao_nova
         this.eat_pieces(posicao_nova)
+        piece.board_coords = posicao_nova
         this.board[posicao_nova.x][posicao_nova.y] = piece
-        console.log("Tabuleiro atual:", this.board)
+        console.log('Tabuleiro atual:', this.board)
         return posicao_nova;
     }   
 
@@ -55,10 +53,10 @@ class Board {
 
     eat_pieces(at_position) {
         let piece_in_the_position = this.board[at_position.x][at_position.y]
-        console.log('piece', piece_in_the_position)
+        this.board[at_position.x][at_position.y] = 0
         if(piece_in_the_position != 0) {
             //deleting piece object in the board table (this.board)
-            this.board[at_position.x][at_position.y] = 0
+            //this.board[at_position.x][at_position.y] = 0
             if(piece_in_the_position.name == 'Pawn') {
                 removeAr(white_pawns, piece_in_the_position)
                 removeAr(black_pawns, piece_in_the_position)

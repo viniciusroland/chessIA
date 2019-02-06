@@ -105,7 +105,6 @@ var tabuleiro = [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
 ]
-console.log(tabuleiro)
 
 function setup() {
     colorMode(RGB)
