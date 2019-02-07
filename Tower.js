@@ -92,6 +92,35 @@ class Tower {
             }
         }
 
+        if(new_position.y < old_position.y) {
+            for(let i = new_position.y; i < old_position.y; i++) {
+                console.log('for 1', i)
+                piece_aside = board.board[new_position.x][i]
+                if(piece_aside != 0) {
+                    break
+                }
+            }
+
+            if(piece_aside == undefined) {
+                piece_aside = 0
+            }
+            console.warn(piece_aside)
+        } else {
+        // 7 <--  3
+        //desceu
+            for(let i = old_position.y + 1; i < new_position.y; i++) {
+                console.log('for 2', i)
+                piece_aside = board.board[new_position.x][i]
+                if(piece_aside != 0) {
+                    break
+                }
+            }
+            console.warn(piece_aside)
+            if(piece_aside == undefined) {
+                piece_aside = 0
+            }
+        }
+
         if(new_position.y == old_position.y && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
             console.log('andou verticalmente')
             //preto andou uma casa
@@ -101,7 +130,7 @@ class Tower {
             this.update_round()
             this.x = new_position.y * 80
             this.y = new_position.x * 80
-        } else if(new_position.x == old_position.x){
+        } else if(new_position.x == old_position.x && piece_aside == 0 && board.board[new_position.x][new_position.y] != this.color){
             console.log('andou horizontalmente')
             //preto andou duas casas
             this.eat_pieces(new_position)
