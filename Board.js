@@ -27,6 +27,7 @@ class Board {
     }
 
     move_to_new_position(x, y, piece) {
+        //mover esse metodo pras classes de cada peca e nao deixa-lo aqui no Board.js
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
                 if (x > j * 80 && x < j * 80 + 80 && y > i * 80 && y < i * 80 + 80) {
@@ -41,7 +42,7 @@ class Board {
                 if(new_position.y == old_position.y && new_position.x - old_position.x == -1) {
                     console.log('preto andou uma casa')
                     piece.first_move = true
-                } else if(!piece.first_move){
+                } else if(!piece.first_move && new_position.x - old_position.x == -2){
                     piece.first_move = true
                     console.warn('preto andou 2 casa')
                 } else {
@@ -51,7 +52,7 @@ class Board {
                 if(new_position.y == old_position.y && new_position.x - old_position.x == 1) {
                     console.log('branco andou uma casa')
                     piece.first_move = true
-                } else if(!piece.first_move){
+                } else if(!piece.first_move && new_position.x - old_position.x == 2){
                     piece.first_move = true
                     console.warn('branco andou 2 casa')
                 } else {
@@ -68,6 +69,7 @@ class Board {
     }   
 
     remove_from_old_position(x, y) {
+        //mover esse metodo pras classes de cada peca e nao deixa-lo aqui no Board.js
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
                 if (x >= j * 80 && x <= j * 80 + 80 && y >= i * 80 && y <= i * 80 + 80) {
