@@ -68,8 +68,8 @@ class Horse {
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
             this.update_round()
-            this.x = mouseX - 25
-            this.y = mouseY - 25
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
         } else if(!this.first_move && new_position.x - old_position.x == direcao*2 && board.board[new_position.x][new_position.y] == 0){
             //preto andou duas casas
             this.first_move = true
@@ -77,8 +77,8 @@ class Horse {
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
             this.update_round()
-            this.x = mouseX - 25
-            this.y = mouseY - 25
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
         } else if(((new_position.x - old_position.x == direcao && new_position.y - old_position.y == direcao) || (new_position.x - old_position.x == direcao && new_position.y - old_position.y == direcao * (-1))) && (board.board[new_position.x][new_position.y] != 0 && board.board[new_position.x][new_position.y].color != this.color)){
             //comendo diagonalmente
             this.first_move = true

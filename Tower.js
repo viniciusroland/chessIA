@@ -99,8 +99,8 @@ class Tower {
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
             this.update_round()
-            this.x = mouseX - 25
-            this.y = mouseY - 25
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
         } else if(new_position.x == old_position.x){
             console.log('andou horizontalmente')
             //preto andou duas casas
@@ -108,8 +108,8 @@ class Tower {
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
             this.update_round()
-            this.x = mouseX - 25
-            this.y = mouseY - 25
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
         }
         this.contador = 0
         this.clicado = false
