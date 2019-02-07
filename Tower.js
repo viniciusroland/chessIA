@@ -92,7 +92,7 @@ class Tower {
             }
         }
 
-        if(new_position.y == old_position.y && piece_in_front == 0) {
+        if(new_position.y == old_position.y && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
             console.log('andou verticalmente')
             //preto andou uma casa
             this.eat_pieces(new_position)
