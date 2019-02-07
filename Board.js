@@ -1,3 +1,7 @@
+var new_position;
+var old_position;
+var white_pawn_first_move = false
+var black_pawn_first_move = false
 class Board {
 
     constructor(x, y, tabuleiro) {
@@ -27,9 +31,35 @@ class Board {
             for (let j = 0; j < 8; j++) {
                 if (x > j * 80 && x < j * 80 + 80 && y > i * 80 && y < i * 80 + 80) {
                     var posicao_nova = createVector(i, j)
+                    new_position = posicao_nova
                 }
             }
         }
+
+        if(piece.name == "Pawn") {
+            if(piece.color == "black") {
+                if(new_position.y == old_position.y && new_position.x - old_position.x == -1) {
+                    console.log('preto andou uma casa')
+                    piece.first_move = true
+                } else if(!piece.first_move){
+                    piece.first_move = true
+                    console.warn('preto andou 2 casa')
+                } else {
+                    console.error('ERROU')
+                }
+            } else if(piece.color == "white") {
+                if(new_position.y == old_position.y && new_position.x - old_position.x == 1) {
+                    console.log('branco andou uma casa')
+                    piece.first_move = true
+                } else if(!piece.first_move){
+                    piece.first_move = true
+                    console.warn('branco andou 2 casa')
+                } else {
+                    console.error('ERROU')
+                }
+            }
+        }
+        console.log(piece.name, piece.color, new_position, old_position)
         this.eat_pieces(posicao_nova)
         piece.board_coords = posicao_nova
         this.board[posicao_nova.x][posicao_nova.y] = piece
@@ -42,6 +72,7 @@ class Board {
             for (let j = 0; j < 8; j++) {
                 if (x >= j * 80 && x <= j * 80 + 80 && y >= i * 80 && y <= i * 80 + 80) {
                     var posicao_antiga = createVector(i, j) 
+                    old_position = posicao_antiga
                 }
             }
         }

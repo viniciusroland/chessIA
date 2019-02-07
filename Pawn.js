@@ -10,6 +10,7 @@ class Pawn {
         this.contador = 0
         this.board_coords;
         this.color = color
+        this.first_move = false
     }
     display() {
          if(!this.clicado) {
