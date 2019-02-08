@@ -52,44 +52,162 @@ class Queen {
     }
 
     check_move_rules() {
-        var direcao;
+        var piece_in_front;
+        var piece_aside;
         old_position = this.get_old_position(this.x, this.y)
         new_position = this.get_new_position(mouseX, mouseY)
-        if(this.color == 'black') {
-            direcao = -1
-        } else {
-            direcao = 1
+
+        //movimentos diagonais
+        //diagonal pra cima e pra esquerda
+        if(old_position.y > new_position.y && old_position.x > new_position.x) {
+            for(let i = new_position.x + 1; i < old_position.x; i++) {
+                console.log('diagonal pra cima e pra esquerda')
+                console.warn(i, i - 2)
+                piece_in_front = board.board[i][i - 2]
+                if(piece_in_front != 0) {
+                    console.log('breakei 1 for')
+                    break
+                }
+            }
+            if(piece_in_front == undefined) {
+                piece_in_front = 0
+            }
+
+        // diagonal pra baixo e pra direita
+        } else if(old_position.y < new_position.y && old_position.x < new_position.x){
+            for(let i = old_position.x + 1; i < new_position.x; i++) {
+                console.log('diagonal pra baixo e pra direita')
+                console.warn(i, 9 - i)
+                piece_in_front = board.board[i][i - 2]
+                if(piece_in_front != 0) {
+                    console.log('breakei 2 for')
+                    break
+                }
+            }
+            if(piece_in_front == undefined) {
+                piece_in_front = 0
+            }
+
+        // diagonal pra cima e pra direita
+        } else if(old_position.y < new_position.y && old_position.x > new_position.x){
+            for(let i = new_position.x + 1; i < old_position.x; i++) {
+                console.log('diagonal pra cima e pra direita')
+                console.warn(i, 9 - i)
+                piece_in_front = board.board[i][9 - i]
+                if(piece_in_front != 0) {
+                    console.log('breakei 3 for')
+                    break
+                }
+            }
+            if(piece_in_front == undefined) {
+                piece_in_front = 0
+            }
+
+        // diagonal pra baixo pra esquerda
+        } else if(old_position.y > new_position.y && old_position.x < new_position.x){
+            for(let i = old_position.x + 1; i < new_position.x; i++) {
+                console.log('diagonal pra baixo e pra esquerda')
+                console.warn(i, 9 - i)
+                piece_in_front = board.board[i][9 - i]
+                if(piece_in_front != 0) {
+                    console.log('breakei 4 for')
+                    break
+                }
+            }
+            if(piece_in_front == undefined) {
+                piece_in_front = 0
+            }
+
+        //movimentos horizontais ou verticais
+        //vertical pra cima
+        } else if(new_position.x < old_position.x && new_position.y == old_position.y) {
+            for(let i = new_position.x; i < old_position.x; i++) {
+                console.log('vertical pra cima')
+                console.log('for 1', i)
+                piece_in_front = board.board[i][new_position.y]
+                if(piece_in_front != 0) {
+                    break
+                }
+            }
+            if(piece_in_front == undefined) {
+                piece_in_front = 0
+            }
+        //vertical pra baixo
+        } else if(new_position.x > old_position.x && new_position.y == old_position.y){
+
+            for(let i = old_position.x + 1; i < new_position.x; i++) {
+                console.log('vertical pra baixo')
+                console.log('for 2', i)
+                piece_in_front = board.board[i][new_position.y]
+                if(piece_in_front != 0) {
+                    break
+                }
+            }
+            if(piece_in_front == undefined) {
+                piece_in_front = 0
+            }
+        //horizontal pra esquerda
+        } else if(new_position.y < old_position.y && new_position.x == old_position.x){
+            for(let i = new_position.y; i < old_position.y; i++) {
+                console.log('horizontal pra esquerda')
+                console.log('for 3', i)
+                piece_aside = board.board[new_position.x][i]
+                if(piece_aside != 0) {
+                    break
+                }
+            }
+            if(piece_aside == undefined) {
+                piece_aside = 0
+            }
+        //horizontal pra direita
+        } else if(new_position.y > old_position.y && new_position.x == old_position.x){
+
+            for(let i = old_position.y + 1; i < new_position.y; i++) {
+                console.log('horizontal pra direita')
+                console.log('for 4', i)
+                piece_aside = board.board[new_position.x][i]
+                if(piece_aside != 0) {
+                    break
+                }
+            }
+            if(piece_aside == undefined) {
+                piece_aside = 0
+            }
+            
         }
 
-        if(new_position.y == old_position.y && new_position.x - old_position.x == direcao && board.board[new_position.x][new_position.y] == 0) {
-            //preto andou uma casa
+        console.log('piece in front', piece_in_front)
+        console.log('piece aside', piece_aside)
+
+        if((new_position.x - new_position.y == 2 || new_position.x + new_position.y == 9) && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color){
             this.first_move = true
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
-            this.update_round()
-            this.x = mouseX - 25
-            this.y = mouseY - 25
-        } else if(!this.first_move && new_position.x - old_position.x == direcao*2 && board.board[new_position.x][new_position.y] == 0){
-            //preto andou duas casas
+            //this.update_round()
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
+        } else if(new_position.y == old_position.y && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color){
             this.first_move = true
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
-            this.update_round()
-            this.x = mouseX - 25
-            this.y = mouseY - 25
-        } else if(((new_position.x - old_position.x == direcao && new_position.y - old_position.y == direcao) || (new_position.x - old_position.x == direcao && new_position.y - old_position.y == direcao * (-1))) && (board.board[new_position.x][new_position.y] != 0 && board.board[new_position.x][new_position.y].color != this.color)){
-            //comendo diagonalmente
+            //this.update_round()
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
+        } else if(new_position.x == old_position.x && piece_aside == 0 && board.board[new_position.x][new_position.y].color != this.color) {
             this.first_move = true
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
-            this.update_round()
-            this.x = mouseX - 25
-            this.y = mouseY - 25
+            //this.update_round()
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
         } else {
-            //errou
+            console.log('verificando condicoes diagonalmente')
+            console.log(new_position.x, new_position.y)
+            //console.warn('barra invertida', new_position.x - new_position.y == 2, '/', new_position.x + new_position.y == 9, piece_in_front == 0)
+
             console.error('ERROU')
         }
         this.contador = 0
