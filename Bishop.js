@@ -56,30 +56,53 @@ class Bishop {
         old_position = this.get_old_position(this.x, this.y)
         new_position = this.get_new_position(mouseX, mouseY)
         // 7, 5 ->>>> 4, 2
-        if(old_position.y > new_position.y) {
+        // diagonal pra cima e pra esquerda
+        if(old_position.y > new_position.y && old_position.x > new_position.x) {
             for(let i = new_position.x + 1; i < old_position.x; i++) {
                 console.warn(i, i - 2)
                 piece_in_front = board.board[i][i - 2]
                 if(piece_in_front != 0) {
+                    console.log('breakei 1 for')
                     break
                 }
             }
 
-        } else {
-            // 7, 2 >>>> 3, 6
-            // trocar new_position com old_position para os outros casos inversos a esses
+        // diagonal pra baixo e pra direita
+        } else if(old_position.y < new_position.y && old_position.x < new_position.x){
+            for(let i = old_position.x + 1; i < new_position.x; i++) {
+                console.warn(i, 9 - i)
+                piece_in_front = board.board[i][i - 2]
+                if(piece_in_front != 0) {
+                    console.log('breakei 2 for')
+                    break
+                }
+            }
+
+        // diagonal pra cima e pra direita
+        } else if(old_position.y < new_position.y && old_position.x > new_position.x){
             for(let i = new_position.x + 1; i < old_position.x; i++) {
                 console.warn(i, 9 - i)
                 piece_in_front = board.board[i][9 - i]
                 if(piece_in_front != 0) {
-                    console.log('breakei')
-                    console.log(piece_in_front)
+                    console.log('breakei 3 for')
                     break
                 }
-                console.log('kappa')
             }
-            console.log('entrei no else')
 
+        // diagonal pra baixo pra esquerda
+        } else {
+            for(let i = old_position.x + 1; i < new_position.x; i++) {
+                console.warn(i, 9 - i)
+                piece_in_front = board.board[i][9 - i]
+                if(piece_in_front != 0) {
+                    console.log('breakei 4 for')
+                    break
+                }
+            }
+
+        }
+        if(piece_in_front == undefined) {
+            piece_in_front = 0
         }
         console.log(piece_in_front)
 
