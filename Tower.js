@@ -123,16 +123,14 @@ class Tower {
 
         if(new_position.y == old_position.y && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
             console.log('andou verticalmente')
-            //preto andou uma casa
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
             this.update_round()
             this.x = new_position.y * 80
             this.y = new_position.x * 80
-        } else if(new_position.x == old_position.x && piece_aside == 0 && board.board[new_position.x][new_position.y] != this.color){
+        } else if(new_position.x == old_position.x && piece_aside == 0 && board.board[new_position.x][new_position.y].color != this.color){
             console.log('andou horizontalmente')
-            //preto andou duas casas
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position

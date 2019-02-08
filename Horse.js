@@ -60,34 +60,48 @@ class Horse {
         } else {
             direcao = 1
         }
+        //condicao 1:
+        //  new_position.y - old_position.y == -2 && new_position.x - old_position.x == -1
+        //
+        //condicao 2:
+        //  new_position.y - old_position.y == -2 && new_position.x - old_position.x == 1
+        //
+        //condicao 3:
+        //  new_position.y - old_position.y == 2 && new_position.x - old_position.x == -1
+        //
+        //condicao 4:
+        //  new_position.y - old_position.y == 2 && new_position.x - old_position.x == 1
+        //
+        //
+        //condicao 5:
+        //  new_position.y - old_position.y == -1 && new_position.x - old_position.x == -2
+        //
+        //condicao 6:
+        //  new_position.y - old_position.y == 1 && new_position.x - old_position.x == -2
+        //
+        //condicao 7:
+        //  new_position.y - old_position.y == -1 && new_position.x - old_position.x == 2
+        //
+        //condicao 8:
+        //  new_position.y - old_position.y == 1 && new_position.x - old_position.x == 2
 
-        if(new_position.y == old_position.y && new_position.x - old_position.x == direcao && board.board[new_position.x][new_position.y] == 0) {
-            //preto andou uma casa
-            this.first_move = true
+        if(((new_position.y - old_position.y == -2 && new_position.x - old_position.x == -1)
+         || (new_position.y - old_position.y == -2 && new_position.x - old_position.x == 1)
+         || (new_position.y - old_position.y == 2 && new_position.x - old_position.x == -1)
+         || (new_position.y - old_position.y == 2 && new_position.x - old_position.x == 1)
+         || (new_position.y - old_position.y == -1 && new_position.x - old_position.x == -2)
+         || (new_position.y - old_position.y == 1 && new_position.x - old_position.x == -2)
+         || (new_position.y - old_position.y == -1 && new_position.x - old_position.x == 2)
+         || (new_position.y - old_position.y == 1 && new_position.x - old_position.x == 2))
+         && (board.board[new_position.x][new_position.y].color != this.color)) {
+
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
             this.update_round()
             this.x = new_position.y * 80
             this.y = new_position.x * 80
-        } else if(!this.first_move && new_position.x - old_position.x == direcao*2 && board.board[new_position.x][new_position.y] == 0){
-            //preto andou duas casas
-            this.first_move = true
-            this.eat_pieces(new_position)
-            board.updateBoard(old_position, new_position, this)
-            this.board_coords = new_position
-            this.update_round()
-            this.x = new_position.y * 80
-            this.y = new_position.x * 80
-        } else if(((new_position.x - old_position.x == direcao && new_position.y - old_position.y == direcao) || (new_position.x - old_position.x == direcao && new_position.y - old_position.y == direcao * (-1))) && (board.board[new_position.x][new_position.y] != 0 && board.board[new_position.x][new_position.y].color != this.color)){
-            //comendo diagonalmente
-            this.first_move = true
-            this.eat_pieces(new_position)
-            board.updateBoard(old_position, new_position, this)
-            this.board_coords = new_position
-            this.update_round()
-            this.x = mouseX - 25
-            this.y = mouseY - 25
+
         } else {
             //errou
             console.error('ERROU')

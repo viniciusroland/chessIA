@@ -52,42 +52,45 @@ class Bishop {
     }
 
     check_move_rules() {
-        var direcao;
+        var piece_in_front = undefined
         old_position = this.get_old_position(this.x, this.y)
         new_position = this.get_new_position(mouseX, mouseY)
-        if(this.color == 'black') {
-            direcao = -1
-        } else {
-            direcao = 1
-        }
+        // 7, 5 ->>>> 4, 2
+        if(old_position.y > new_position.y) {
+            for(let i = new_position.x + 1; i < old_position.x; i++) {
+                console.warn(i, i - 2)
+                piece_in_front = board.board[i][i - 2]
+                if(piece_in_front != 0) {
+                    break
+                }
+            }
 
-        if(new_position.y == old_position.y && new_position.x - old_position.x == direcao && board.board[new_position.x][new_position.y] == 0) {
-            //preto andou uma casa
+        } else {
+            // 7, 2 >>>> 3, 6
+            // trocar new_position com old_position para os outros casos inversos a esses
+            for(let i = new_position.x + 1; i < old_position.x; i++) {
+                console.warn(i, 9 - i)
+                piece_in_front = board.board[i][9 - i]
+                if(piece_in_front != 0) {
+                    console.log('breakei')
+                    console.log(piece_in_front)
+                    break
+                }
+                console.log('kappa')
+            }
+            console.log('entrei no else')
+
+        }
+        console.log(piece_in_front)
+
+        if((new_position.x - new_position.y == 2 || new_position.x + new_position.y == 9) && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
             this.first_move = true
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
             this.update_round()
-            this.x = mouseX - 25
-            this.y = mouseY - 25
-        } else if(!this.first_move && new_position.x - old_position.x == direcao*2 && board.board[new_position.x][new_position.y] == 0){
-            //preto andou duas casas
-            this.first_move = true
-            this.eat_pieces(new_position)
-            board.updateBoard(old_position, new_position, this)
-            this.board_coords = new_position
-            this.update_round()
-            this.x = mouseX - 25
-            this.y = mouseY - 25
-        } else if(((new_position.x - old_position.x == direcao && new_position.y - old_position.y == direcao) || (new_position.x - old_position.x == direcao && new_position.y - old_position.y == direcao * (-1))) && (board.board[new_position.x][new_position.y] != 0 && board.board[new_position.x][new_position.y].color != this.color)){
-            //comendo diagonalmente
-            this.first_move = true
-            this.eat_pieces(new_position)
-            board.updateBoard(old_position, new_position, this)
-            this.board_coords = new_position
-            this.update_round()
-            this.x = mouseX - 25
-            this.y = mouseY - 25
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
         } else {
             //errou
             console.error('ERROU')
