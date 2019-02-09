@@ -64,14 +64,12 @@ class Queen {
         old_position = this.get_old_position(this.x, this.y)
         new_position = this.get_new_position(mouseX, mouseY)
         var caso = this.get_moviment_case(new_position, old_position, this.tile_color)
-        console.warn('caso', caso)
 
         if(new_position.x == new_position.y - 6 || new_position.x == new_position.y - 4 || new_position.x == new_position.y - 2 || new_position.x == new_position.y || new_position.x == new_position.y + 2 || new_position.x == new_position.y + 4 || new_position.x == new_position.y + 6) {
             this.tile_color = 'white'
         } else {
             this.tile_color = 'green'
         }
-        console.warn('TILE_COLOR', this.tile_color)
         //movimentos diagonais
         //diagonal pra cima e pra esquerda
         if(old_position.y > new_position.y && old_position.x > new_position.x) {
@@ -80,105 +78,90 @@ class Queen {
                 if(caso == 'dif == -7'){
                     piece_in_front = board.board[i][i + 7]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -6'){
                     piece_in_front = board.board[i][i + 6]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -5'){
                     piece_in_front = board.board[i][i + 5]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -4'){
                     piece_in_front = board.board[i][i + 4]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -3'){
                     piece_in_front = board.board[i][i + 3]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -2'){
                     piece_in_front = board.board[i][i + 2]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -1'){
                     piece_in_front = board.board[i][i + 1]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 0'){
                     piece_in_front = board.board[i][i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 1'){
                     piece_in_front = board.board[i][i - 1]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 2'){
                     piece_in_front = board.board[i][i - 2]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 3'){
                     piece_in_front = board.board[i][i - 3]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 4'){
                     piece_in_front = board.board[i][i - 4]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 5'){
                     piece_in_front = board.board[i][i - 5]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 6'){
                     piece_in_front = board.board[i][i - 6]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 7'){
                     piece_in_front = board.board[i][i - 7]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
@@ -192,105 +175,90 @@ class Queen {
                 if(caso == 'dif == -7'){
                     piece_in_front = board.board[i][i + 7]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -6'){
                     piece_in_front = board.board[i][i + 6]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -5'){
                     piece_in_front = board.board[i][i + 5]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -4'){
                     piece_in_front = board.board[i][i + 4]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -3'){
                     piece_in_front = board.board[i][i + 3]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -2'){
                     piece_in_front = board.board[i][i + 2]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == -1'){
                     piece_in_front = board.board[i][i + 1]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 0'){
                     piece_in_front = board.board[i][i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 1'){
                     piece_in_front = board.board[i][i - 1]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 2'){
                     piece_in_front = board.board[i][i - 2]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 3'){
                     piece_in_front = board.board[i][i - 3]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 4'){
                     piece_in_front = board.board[i][i - 4]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 5'){
                     piece_in_front = board.board[i][i - 5]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 6'){
                     piece_in_front = board.board[i][i - 6]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
                 if(caso == 'dif == 7'){
                     piece_in_front = board.board[i][i - 7]
                     if(piece_in_front != 0) {
-                        console.log('breakei 1 for')
                         break
                     }
                 }
@@ -302,106 +270,90 @@ class Queen {
                 if(caso == 'sum == 14'){
                     piece_in_front = board.board[i][14 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 13'){
                     piece_in_front = board.board[i][13 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 12'){
                     piece_in_front = board.board[i][12 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 11'){
                     piece_in_front = board.board[i][11 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 10'){
                     piece_in_front = board.board[i][10 - i]
-                    console.log('aqui diagonal pra cima e pra direita')
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 9'){
                     piece_in_front = board.board[i][9 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 8'){
                     piece_in_front = board.board[i][8 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 7'){
                     piece_in_front = board.board[i][7 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 6'){
                     piece_in_front = board.board[i][6 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 5'){
                     piece_in_front = board.board[i][5 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 4'){
                     piece_in_front = board.board[i][4 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 3'){
                     piece_in_front = board.board[i][3 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 2'){
                     piece_in_front = board.board[i][2 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 1'){
                     piece_in_front = board.board[i][1 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 0'){
                     piece_in_front = board.board[i][i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
@@ -413,106 +365,90 @@ class Queen {
                 if(caso == 'sum == 14'){
                     piece_in_front = board.board[i][14 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 13'){
                     piece_in_front = board.board[i][13 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 12'){
                     piece_in_front = board.board[i][12 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 11'){
                     piece_in_front = board.board[i][11 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 10'){
-                    console.log('aqui diagonal pra baixo e pra esquerda')
                     piece_in_front = board.board[i][10 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 9'){
                     piece_in_front = board.board[i][9 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 8'){
                     piece_in_front = board.board[i][8 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 7'){
                     piece_in_front = board.board[i][7 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 6'){
                     piece_in_front = board.board[i][6 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 5'){
                     piece_in_front = board.board[i][5 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 4'){
                     piece_in_front = board.board[i][4 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 3'){
                     piece_in_front = board.board[i][3 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 2'){
                     piece_in_front = board.board[i][2 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 1'){
                     piece_in_front = board.board[i][1 - i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
                 if(caso == 'sum == 0'){
                     piece_in_front = board.board[i][i]
                     if(piece_in_front != 0) {
-                        console.log('breakei 4 for')
                         break
                     }
                 }
@@ -527,8 +463,6 @@ class Queen {
         //vertical pra cima
         if(new_position.x < old_position.x && new_position.y == old_position.y) {
             for(let i = new_position.x + 1; i < old_position.x; i++) {
-                console.log('vertical pra cima')
-                console.log('for 1', i)
                 piece_in_front = board.board[i][new_position.y]
                 if(piece_in_front != 0) {
                     break
@@ -541,8 +475,6 @@ class Queen {
         } else if(new_position.x > old_position.x && new_position.y == old_position.y){
 
             for(let i = old_position.x + 1; i < new_position.x; i++) {
-                console.log('vertical pra baixo')
-                console.log('for 2', i)
                 piece_in_front = board.board[i][new_position.y]
                 if(piece_in_front != 0) {
                     break
@@ -554,8 +486,6 @@ class Queen {
         //horizontal pra esquerda
         } else if(new_position.y < old_position.y && new_position.x == old_position.x){
             for(let i = new_position.y + 1; i < old_position.y; i++) {
-                console.log('horizontal pra esquerda')
-                console.log('for 3', i)
                 piece_aside = board.board[new_position.x][i]
                 if(piece_aside != 0) {
                     break
@@ -568,8 +498,6 @@ class Queen {
         } else if(new_position.y > old_position.y && new_position.x == old_position.x){
 
             for(let i = old_position.y + 1; i < new_position.y; i++) {
-                console.log('horizontal pra direita')
-                console.log('for 4', i)
                 piece_aside = board.board[new_position.x][i]
                 if(piece_aside != 0) {
                     break
@@ -581,8 +509,6 @@ class Queen {
             
         }
 
-        console.log('piece in front', piece_in_front)
-        console.log('piece aside', piece_aside)
         if(this.tile_color == 'white'){
 
             if(((new_position.x - new_position.y == 6 && old_position.x - old_position.y == 6) ||
@@ -607,7 +533,7 @@ class Queen {
                     this.eat_pieces(new_position)
                     board.updateBoard(old_position, new_position, this)
                     this.board_coords = new_position
-                    //this.update_round()
+                    this.update_round()
                     this.x = new_position.y * 80
                     this.y = new_position.x * 80
 
@@ -636,7 +562,7 @@ class Queen {
                     this.eat_pieces(new_position)
                     board.updateBoard(old_position, new_position, this)
                     this.board_coords = new_position
-                    //this.update_round()
+                    this.update_round()
                     this.x = new_position.y * 80
                     this.y = new_position.x * 80
 
@@ -648,7 +574,7 @@ class Queen {
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
-            //this.update_round()
+            this.update_round()
             this.x = new_position.y * 80
             this.y = new_position.x * 80
         } else if(new_position.x == old_position.x && piece_aside == 0 && board.board[new_position.x][new_position.y].color != this.color) {
@@ -656,12 +582,10 @@ class Queen {
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
-            //this.update_round()
+            this.update_round()
             this.x = new_position.y * 80
             this.y = new_position.x * 80
         } else {
-            console.log('verificando condicoes diagonalmente')
-            console.log(new_position.x, new_position.y)
             console.error('ERROU')
         }
         this.contador = 0

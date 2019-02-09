@@ -60,7 +60,6 @@ class Pawn {
             var direcao = 1
 
         }
-        console.error("Direcao", direcao)
 
         if(new_position.y == old_position.y && new_position.x - old_position.x == direcao && board.board[new_position.x][new_position.y] == 0) {
             //preto andou uma casa
@@ -90,7 +89,6 @@ class Pawn {
             this.x = new_position.y
             this.y = new_position.x
         } else {
-            console.log(new_position.y - old_position.y == direcao * (-1))
             //errou
             console.error('ERROU')
         }

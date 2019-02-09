@@ -65,7 +65,6 @@ class Tower {
         //subiu
         if(new_position.x < old_position.x) {
             for(let i = new_position.x; i < old_position.x; i++) {
-                console.log('for 1', i)
                 piece_in_front = board.board[i][new_position.y]
                 if(piece_in_front != 0) {
                     break
@@ -75,18 +74,15 @@ class Tower {
             if(piece_in_front == undefined) {
                 piece_in_front = 0
             }
-            console.warn(piece_in_front)
         } else {
         // 7 <--  3
         //desceu
             for(let i = old_position.x + 1; i < new_position.x; i++) {
-                console.log('for 2', i)
                 piece_in_front = board.board[i][new_position.y]
                 if(piece_in_front != 0) {
                     break
                 }
             }
-            console.warn(piece_in_front)
             if(piece_in_front == undefined) {
                 piece_in_front = 0
             }
@@ -94,7 +90,6 @@ class Tower {
 
         if(new_position.y < old_position.y) {
             for(let i = new_position.y; i < old_position.y; i++) {
-                console.log('for 1', i)
                 piece_aside = board.board[new_position.x][i]
                 if(piece_aside != 0) {
                     break
@@ -104,25 +99,21 @@ class Tower {
             if(piece_aside == undefined) {
                 piece_aside = 0
             }
-            console.warn(piece_aside)
         } else {
         // 7 <--  3
         //desceu
             for(let i = old_position.y + 1; i < new_position.y; i++) {
-                console.log('for 2', i)
                 piece_aside = board.board[new_position.x][i]
                 if(piece_aside != 0) {
                     break
                 }
             }
-            console.warn(piece_aside)
             if(piece_aside == undefined) {
                 piece_aside = 0
             }
         }
 
         if(new_position.y == old_position.y && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
-            console.log('andou verticalmente')
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
@@ -130,7 +121,6 @@ class Tower {
             this.x = new_position.y * 80
             this.y = new_position.x * 80
         } else if(new_position.x == old_position.x && piece_aside == 0 && board.board[new_position.x][new_position.y].color != this.color){
-            console.log('andou horizontalmente')
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
