@@ -12,6 +12,19 @@ class Bishop {
         this.color = color
         this.first_move = false
         this.erro = false
+        if(x == 160 && y == 0) {
+            this.tile_color = 'white'
+        }
+        if(x == 400 && y == 0) {
+            this.tile_color = 'green'
+        }
+
+        if(x == 160 && y == 560) {
+            this.tile_color = 'green'
+        }
+        if(x == 400 && y == 560) {
+            this.tile_color = 'white'
+        }
     }
     display() {
          if(!this.clicado) {
@@ -104,19 +117,73 @@ class Bishop {
         if(piece_in_front == undefined) {
             piece_in_front = 0
         }
-        console.log(piece_in_front)
 
-        if((new_position.x - new_position.y == 2 || new_position.x + new_position.y == 9) && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
-            this.first_move = true
-            this.eat_pieces(new_position)
-            board.updateBoard(old_position, new_position, this)
-            this.board_coords = new_position
-            this.update_round()
-            this.x = new_position.y * 80
-            this.y = new_position.x * 80
-        } else {
-            //errou
-            console.error('ERROU')
+
+
+        if(this.tile_color == 'white') {
+            if(((new_position.x - new_position.y == 6 && old_position.x - old_position.y == 6) ||
+            (new_position.x - new_position.y == 4 && old_position.x - old_position.y == 4 ) ||
+            (new_position.x - new_position.y == 2 && old_position.x - old_position.y == 2  )||
+            (new_position.x - new_position.y == 0 && old_position.x - old_position.y == 0 ) ||
+            (new_position.x - new_position.y == -2 && old_position.x - old_position.y == -2) ||
+            (new_position.x - new_position.y == -4 && old_position.x - old_position.y == -4 )||
+            (new_position.x - new_position.y == -6 && old_position.x - old_position.y == -6) ||
+
+            (new_position.x + new_position.y == 0 && old_position.x + old_position.y == 0)  ||
+            (new_position.x + new_position.y == 2 && old_position.x + old_position.y == 2)  ||
+            (new_position.x + new_position.y == 4 && old_position.x + old_position.y == 4)  ||
+            (new_position.x + new_position.y == 6 && old_position.x + old_position.y == 6)  ||
+            (new_position.x + new_position.y == 8 && old_position.x + old_position.y == 8)  ||
+            (new_position.x + new_position.y == 10 && old_position.x + old_position.y == 10)  ||
+            (new_position.x + new_position.y == 12 && old_position.x + old_position.y == 12)  ||
+            (new_position.x + new_position.y == 14 && old_position.x + old_position.y == 14))
+
+            && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
+                console.log(new_position, old_position)
+                this.first_move = true
+                this.eat_pieces(new_position)
+                board.updateBoard(old_position, new_position, this)
+                this.board_coords = new_position
+                this.update_round()
+                this.x = new_position.y * 80
+                this.y = new_position.x * 80
+            } else {
+                //errou
+                console.error('ERROU')
+            }
+
+        } else if(this.tile_color == 'green') {
+           if(((new_position.x - new_position.y == 7 && old_position.x - old_position.y == 7)  ||
+            (new_position.x - new_position.y == 5 && old_position.x - old_position.y == 5)  ||
+            (new_position.x - new_position.y == 3 && old_position.x - old_position.y == 3)  ||
+            (new_position.x - new_position.y == 1 && old_position.x - old_position.y == 1)  ||
+            (new_position.x - new_position.y == -1 && old_position.x - old_position.y == -1) ||
+            (new_position.x - new_position.y == -3 && old_position.x - old_position.y == -3) ||
+            (new_position.x - new_position.y == -5 && old_position.x - old_position.y == -5) ||
+            (new_position.x - new_position.y == -7 && old_position.x - old_position.y == -7) ||
+ 
+            (new_position.x + new_position.y == 1 && old_position.x + old_position.y == 1)  ||
+            (new_position.x + new_position.y == 3 && old_position.x + old_position.y == 3 ) ||
+            (new_position.x + new_position.y == 5 && old_position.x + old_position.y == 5)  ||
+            (new_position.x + new_position.y == 7 && old_position.x + old_position.y == 7)  ||
+            (new_position.x + new_position.y == 9 && old_position.x + old_position.y == 9)  ||
+            (new_position.x + new_position.y == 11 && old_position.x + old_position.y == 11) ||
+            (new_position.x + new_position.y == 13 && old_position.x + old_position.y == 13))
+
+            && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color){
+                console.log(new_position, old_position)
+                this.first_move = true
+                this.eat_pieces(new_position)
+                board.updateBoard(old_position, new_position, this)
+                this.board_coords = new_position
+                this.update_round()
+                this.x = new_position.y * 80
+                this.y = new_position.x * 80
+            } else {
+                //errou
+                console.error('ERROU')
+            }
+
         }
         this.contador = 0
         this.clicado = false

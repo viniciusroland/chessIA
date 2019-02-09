@@ -59,6 +59,7 @@ function mousePressed() {
             if (mouseX > j * 80 && mouseX < j * 80 + 80 && mouseY > i * 80 && mouseY < i * 80 + 80) {
                 var indexX = i
                 var indexY = j
+                console.log(i, j)
             }
         }
     }

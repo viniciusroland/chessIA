@@ -178,8 +178,8 @@ class Queen {
 
         console.log('piece in front', piece_in_front)
         console.log('piece aside', piece_aside)
-
-        if((new_position.x - new_position.y == 2 || new_position.x + new_position.y == 9) && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color){
+        //trocar o true pela condicao dos bishops
+        if((true) && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color){
             this.first_move = true
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
