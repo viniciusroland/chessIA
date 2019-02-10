@@ -59,7 +59,6 @@ function mousePressed() {
             if (mouseX > j * 80 && mouseX < j * 80 + 80 && mouseY > i * 80 && mouseY < i * 80 + 80) {
                 var indexX = i
                 var indexY = j
-                console.log(i, j)
             }
         }
     }
@@ -200,7 +199,7 @@ function setup() {
     tabuleiro[7][3] = queen_b
     black_queens.push(queen_b)
 
-    board = new Board(8 * tile_size + 2, 8 * tile_size + 2, tabuleiro);
+    board = new Board(8 * tile_size + 1, 8 * tile_size + 1, tabuleiro);
     createCanvas(board.width, board.height) 
     background(51)
 

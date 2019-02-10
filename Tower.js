@@ -64,7 +64,7 @@ class Tower {
         // 3   <--   7
         //subiu
         if(new_position.x < old_position.x) {
-            for(let i = new_position.x; i < old_position.x; i++) {
+            for(let i = new_position.x + 1; i < old_position.x; i++) {
                 piece_in_front = board.board[i][new_position.y]
                 if(piece_in_front != 0) {
                     break
@@ -89,7 +89,7 @@ class Tower {
         }
 
         if(new_position.y < old_position.y) {
-            for(let i = new_position.y; i < old_position.y; i++) {
+            for(let i = new_position.y + 1; i < old_position.y; i++) {
                 piece_aside = board.board[new_position.x][i]
                 if(piece_aside != 0) {
                     break
