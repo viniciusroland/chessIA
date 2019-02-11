@@ -29,7 +29,7 @@ class Pawn {
      }
 
     verify_click() {
-        if(mouseX > this.x && mouseX < this.x + 80 && mouseY > this.y && mouseY < this.y + 80 && this.color == rodada) {
+        if(mouseX > this.x && mouseX < this.x + 80 && mouseY > this.y  && mouseY < this.y + 80 && this.color == rodada) {
             this.clicado = true
             this.contador++
             if(this.contador == 2) {
@@ -86,8 +86,8 @@ class Pawn {
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
             this.update_round()
-            this.x = new_position.y
-            this.y = new_position.x
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
         } else {
             //errou
             console.error('ERROU')

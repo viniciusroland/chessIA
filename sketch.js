@@ -211,6 +211,16 @@ function draw() {
     background(51)
     board.divideBoard()
 
+    //for(let i = 0; i < 8; i++){
+    //    for(let j = 0; j < 8; j++) {
+    //        try {
+    //            board.board[i][j].display()
+    //        } catch {
+    //            console.log('posicao com 0')
+    //        }
+    //    }
+    //}
+
     for(let i = 0; i < white_pawns.length; i++) {
         white_pawns[i].display()
     } 
