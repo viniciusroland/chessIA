@@ -2,6 +2,11 @@ var old_position;
 var new_position;
 class King {
     constructor(image, x, y, color) {
+        if(color == 'white') {
+            this.value = 900
+        } else {
+            this.value = -900
+        }
         this.name = this.constructor.name
         this.img = image
         this.x = x

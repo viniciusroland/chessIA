@@ -2,6 +2,11 @@ var old_position;
 var new_position;
 class Tower {
     constructor(image, x, y, color) {
+        if(color == 'white') {
+            this.value = 50
+        } else {
+            this.value = -50
+        }
         this.name = this.constructor.name
         this.img = image
         this.x = x

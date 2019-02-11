@@ -2,6 +2,11 @@ var old_position;
 var new_position;
 class Queen {
     constructor(image, x, y, color) {
+        if(color == 'white') {
+            this.value = 90
+        } else {
+            this.value = -90
+        }
         this.name = this.constructor.name
         this.tile_color;
         this.img = image

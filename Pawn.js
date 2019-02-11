@@ -2,6 +2,11 @@ var old_position;
 var new_position;
 class Pawn {
     constructor(image, x, y, color) {
+        if(color == 'white') {
+            this.value = 10
+        } else {
+            this.value = -10
+        }
         this.name = this.constructor.name
         this.img = image
         this.x = x
