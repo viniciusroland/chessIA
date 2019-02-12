@@ -1,5 +1,7 @@
+var ai;
 var board;
 var peca_em_questao;
+var white_ai_pieces = []
 
 var white_pawns = []
 var black_pawns = []
@@ -53,7 +55,6 @@ var clicks = 0;
 var piece_clicked;
 
 function mousePressed() { 
-
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             if (mouseX > j * 80 && mouseX < j * 80 + 80 && mouseY > i * 80 && mouseY < i * 80 + 80) {
@@ -199,11 +200,25 @@ function setup() {
     tabuleiro[7][3] = queen_b
     black_queens.push(queen_b)
 
+    
     board = new Board(8 * tile_size + 1, 8 * tile_size + 1, tabuleiro);
     createCanvas(board.width, board.height) 
     background(51)
 
     board.divideBoard()
+
+    white_ai_pieces.push(white_queens)
+    white_ai_pieces.push(white_kings)
+    white_ai_pieces.push(white_towers)
+    white_ai_pieces.push(white_pawns)
+    white_ai_pieces.push(white_horses)
+    white_ai_pieces.push(white_bishops)
+
+    console.log(white_ai_pieces)
+
+    ai = new AI(white_ai_pieces)
+    //setInterval(ai.random_play(), 1500)
+    ai.random_play()
 }
 
 
