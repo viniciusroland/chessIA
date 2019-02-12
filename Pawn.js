@@ -82,37 +82,15 @@ class Pawn {
             this.clicado = false
             //preto andou uma casa
             return true
-            //this.first_move = true
-            //this.eat_pieces(new_position)
-            //board.updateBoard(old_position, new_position, this)
-            //this.board_coords = new_position
-            //this.update_round()
-            //this.x = new_position.y * 80
-            //this.y = new_position.x * 80
         } else if(!this.first_move && new_position.x - old_position.x == direcao*2 && board.board[new_position.x][new_position.y] == 0){
             this.contador = 0
             this.clicado = false
             return true
-            //preto andou duas casas
-            //this.first_move = true
-            //this.eat_pieces(new_position)
-            //board.updateBoard(old_position, new_position, this)
-            //this.board_coords = new_position
-            //this.update_round()
-            //this.x = new_position.y * 80
-            //this.y = new_position.x * 80
         } else if(((new_position.x - old_position.x == direcao && new_position.y - old_position.y == direcao) || (new_position.x - old_position.x == direcao && new_position.y - old_position.y == direcao * (-1))) && (board.board[new_position.x][new_position.y] != 0 && board.board[new_position.x][new_position.y].color != this.color)){
+            console.error('condicao', board.board[new_position.x][new_position.y] != 0 && board.board[new_position.x][new_position.y].color != this.color)
             this.contador = 0
             this.clicado = false
             return true
-            //comendo diagonalmente
-            //this.first_move = true
-            //this.eat_pieces(new_position)
-            //board.updateBoard(old_position, new_position, this)
-            //this.board_coords = new_position
-            //this.update_round()
-            //this.x = new_position.y * 80
-            //this.y = new_position.x * 80
         } else {
             //errou
             console.error('ERROU')

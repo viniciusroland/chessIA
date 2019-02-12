@@ -39,11 +39,15 @@ class Tower {
             this.contador++
             if(this.contador == 2) {
                 //tenta mover peca para posicao nova
-                this.check_move_rules()
+                if(this.check_move_rules()){
+                    this.move()
+                }
             }
         } else if(this.contador == 1) {
             //volta peca para posicao inicial caso usuario clique na mesma casa que estava para refazer a jogada
-            this.check_move_rules()
+            if(this.check_move_rules()){
+                this.move()
+            }
         }
     }
 
@@ -54,6 +58,28 @@ class Tower {
         } else if(rodada == 'black' && this.contador != 2 && !this.erro) {
             rodada = 'white'
         }
+    }
+    move(test_position) {
+        if(test_position) {
+
+            this.first_move = true
+            this.eat_pieces(test_position)
+            board.updateBoard(old_position, test_position, this)
+            this.board_coords = test_position
+            this.update_round()
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
+        } else {
+
+            this.first_move = true
+            this.eat_pieces(new_position)
+            board.updateBoard(old_position, new_position, this)
+            this.board_coords = new_position
+            this.update_round()
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
+        }
+
     }
 
     check_move_rules(test_position) {
@@ -123,21 +149,13 @@ class Tower {
         }
 
         if(new_position.y == old_position.y && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
+            this.contador = 0
+            this.clicado = false
             return true
-            this.eat_pieces(new_position)
-            board.updateBoard(old_position, new_position, this)
-            this.board_coords = new_position
-            this.update_round()
-            this.x = new_position.y * 80
-            this.y = new_position.x * 80
         } else if(new_position.x == old_position.x && piece_aside == 0 && board.board[new_position.x][new_position.y].color != this.color){
+            this.contador = 0
+            this.clicado = false
             return true
-            this.eat_pieces(new_position)
-            board.updateBoard(old_position, new_position, this)
-            this.board_coords = new_position
-            this.update_round()
-            this.x = new_position.y * 80
-            this.y = new_position.x * 80
         }
         this.contador = 0
         this.clicado = false

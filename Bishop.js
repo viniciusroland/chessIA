@@ -31,6 +31,28 @@ class Bishop {
             this.tile_color = 'white'
         }
     }
+    move(test_position) {
+        if(test_position) {
+
+            this.first_move = true
+            this.eat_pieces(test_position)
+            board.updateBoard(old_position, test_position, this)
+            this.board_coords = test_position
+            this.update_round()
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
+        } else {
+
+            this.first_move = true
+            this.eat_pieces(new_position)
+            board.updateBoard(old_position, new_position, this)
+            this.board_coords = new_position
+            this.update_round()
+            this.x = new_position.y * 80
+            this.y = new_position.x * 80
+        }
+
+    }
     display() {
          if(!this.clicado) {
             //image(this.img, this.x, this.y, 80, 80)
@@ -52,11 +74,15 @@ class Bishop {
             this.contador++
             if(this.contador == 2) {
                 //tenta mover peca para posicao nova
-                this.check_move_rules()
+                if(this.check_move_rules()){
+                    this.move()
+                }
             }
         } else if(this.contador == 1) {
             //volta peca para posicao inicial caso usuario clique na mesma casa que estava para refazer a jogada
-            this.check_move_rules()
+            if(this.check_move_rules()){
+                this.move()
+            }
         }
     }
 
@@ -490,14 +516,9 @@ class Bishop {
             (new_position.x + new_position.y == 14 && old_position.x + old_position.y == 14))
 
             && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
+                this.contador = 0
+                this.clicado = false
                 return true
-                this.first_move = true
-                this.eat_pieces(new_position)
-                board.updateBoard(old_position, new_position, this)
-                this.board_coords = new_position
-                this.update_round()
-                this.x = new_position.y * 80
-                this.y = new_position.x * 80
             } else {
                 //errou
                 console.error('ERROU')
@@ -522,14 +543,9 @@ class Bishop {
             (new_position.x + new_position.y == 13 && old_position.x + old_position.y == 13))
 
             && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color){
-               return true
-                this.first_move = true
-                this.eat_pieces(new_position)
-                board.updateBoard(old_position, new_position, this)
-                this.board_coords = new_position
-                this.update_round()
-                this.x = new_position.y * 80
-                this.y = new_position.x * 80
+                this.contador = 0
+                this.clicado = false
+                return true
             } else {
                 //errou
                 console.error('ERROU')

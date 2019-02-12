@@ -150,6 +150,7 @@ function setup() {
         tabuleiro[6][i] = pawn_b
 
         white_pawns.push(pawn_w)
+        white_ai_pieces.push(pawn_w)
         black_pawns.push(pawn_b)
 
     }
@@ -157,6 +158,7 @@ function setup() {
     let king_w = new King(white_king, 320, 0, 'white')
     tabuleiro[0][4] = king_w
     white_kings.push(king_w)
+    white_ai_pieces.push(king_w)
 
     let king_b = new King(black_king, 320, 560, 'black')
     tabuleiro[7][4] = king_b
@@ -171,6 +173,7 @@ function setup() {
         tabuleiro[7][i * 7] = tower_b
 
         white_towers.push(tower_w)
+        white_ai_pieces.push(tower_w)
         black_towers.push(tower_b)
 
         let horse_w = new Horse(white_horse, 480 - 400 * i, 0, 'white')
@@ -180,6 +183,7 @@ function setup() {
         tabuleiro[7][6 - i * 5] = horse_b
 
         white_horses.push(horse_w)
+        white_ai_pieces.push(horse_w)
         black_horses.push(horse_b)
 
         let bishop_w = new Bishop(white_bishop, 400 - 240 * i, 0, 'white')
@@ -189,12 +193,14 @@ function setup() {
         tabuleiro[7][5 - 3 * i] = bishop_b
 
         white_bishops.push(bishop_w)
+        white_ai_pieces.push(bishop_w)
         black_bishops.push(bishop_b)
 
     }
     let queen_w = new Queen(white_queen, 240, 0, 'white')
     tabuleiro[0][3] = queen_w
     white_queens.push(queen_w)
+    white_ai_pieces.push(queen_w)
 
     let queen_b = new Queen(black_queen, 240, 560, 'black')
     tabuleiro[7][3] = queen_b
@@ -207,52 +213,51 @@ function setup() {
 
     board.divideBoard()
 
-    white_ai_pieces.push(white_queens)
-    white_ai_pieces.push(white_kings)
-    white_ai_pieces.push(white_towers)
-    white_ai_pieces.push(white_pawns)
-    white_ai_pieces.push(white_horses)
-    white_ai_pieces.push(white_bishops)
+    //white_ai_pieces.push(white_queens)
+    //white_ai_pieces.push(white_kings)
+    //white_ai_pieces.push(white_towers)
+    //white_ai_pieces.push(white_pawns)
+    //white_ai_pieces.push(white_horses)
+    //white_ai_pieces.push(white_bishops)
 
 
     ai = new AI(white_ai_pieces)
     //setInterval(ai.random_play(), 1500)
     //ai.random_play(board.board[1][1])
-    for(let i = 0; i < white_pawns.length; i++) {
-        let test = white_pawns[i].get_available_moves()
-        console.log('pawns', test)
-    }
+    //for(let i = 0; i < white_pawns.length; i++) {
+    //    let test = white_pawns[i].get_available_moves()
+    //    console.log('pawns', test)
+    //}
 
-    for(let i = 0; i < white_horses.length; i++) {
-        let test = white_horses[i].get_available_moves()
-        console.log('horses', test)
-    }
+    //for(let i = 0; i < white_horses.length; i++) {
+    //    let test = white_horses[i].get_available_moves()
+    //    console.log('horses', test)
+    //}
 
-    for(let i = 0; i < white_towers.length; i++) {
-        let test = white_towers[i].get_available_moves()
-        console.log('towers', test)
-    }
+    //for(let i = 0; i < white_towers.length; i++) {
+    //    let test = white_towers[i].get_available_moves()
+    //    console.log('towers', test)
+    //}
 
-    for(let i = 0; i < white_bishops.length; i++) {
-        let test = white_bishops[i].get_available_moves()
-        console.log('bishops', test)
-    }
+    //for(let i = 0; i < white_bishops.length; i++) {
+    //    let test = white_bishops[i].get_available_moves()
+    //    console.log('bishops', test)
+    //}
 
-    for(let i = 0; i < white_queens.length; i++) {
-        let test = white_queens[i].get_available_moves()
-        console.log('queens', test)
-    }
-    for(let i = 0; i < white_kings.length; i++) {
-        let test = white_kings[i].get_available_moves()
-        console.log('kings', test)
-    }
+    //for(let i = 0; i < white_queens.length; i++) {
+    //    let test = white_queens[i].get_available_moves()
+    //    console.log('queens', test)
+    //}
+    //for(let i = 0; i < white_kings.length; i++) {
+    //    let test = white_kings[i].get_available_moves()
+    //    console.log('kings', test)
+    //}
 }
 
 var testando = 0;
 function draw() {
     background(51)
     board.divideBoard()
-
 
     for(let i = 0; i < white_pawns.length; i++) {
         white_pawns[i].display()

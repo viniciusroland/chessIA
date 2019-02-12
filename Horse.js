@@ -54,7 +54,6 @@ class Horse {
         }
     }
 
-
     update_round() {
         if(rodada == 'white' && this.contador != 2 && !this.erro) {
             rodada = 'black'
@@ -88,9 +87,7 @@ class Horse {
 
     check_move_rules(test_position) {
         if(test_position) {
-            if(test_position.x >= 0 && test_position.y >= 0 && test_position.x < 8 && test_position.y < 8) {
-                new_position = test_position
-            }
+            new_position = test_position
         } else {
             new_position = this.get_new_position(mouseX, mouseY)
 
@@ -118,12 +115,6 @@ class Horse {
             this.contador = 0
             this.clicado = false
             return true
-            //this.eat_pieces(new_position)
-            //board.updateBoard(old_position, new_position, this)
-            //this.board_coords = new_position
-            //this.update_round()
-            //this.x = new_position.y * 80
-            //this.y = new_position.x * 80
 
         } else {
             //errou
