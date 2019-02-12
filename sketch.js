@@ -1,3 +1,4 @@
+console.clear()
 var ai;
 var board;
 var peca_em_questao;
@@ -301,6 +302,16 @@ function draw() {
     } 
     for(let i = 0; i < black_queens.length; i++) {
         black_queens[i].display()
+    }
+    if(black_kings.length == 0) {
+        if(confirm('o branco venceu')) {
+            location.reload()
+        }
+    }
+    if(white_kings.length == 0) {
+        if(confirm('o preto venceu')) {
+            location.reload()
+        }
     }
 }
 
