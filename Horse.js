@@ -70,8 +70,8 @@ class Horse {
             board.updateBoard(old_position, test_position, this)
             this.board_coords = test_position
             this.update_round()
-            this.x = new_position.y * 80
-            this.y = new_position.x * 80
+            this.x = test_position.y * 80
+            this.y = test_position.x * 80
         } else {
 
             this.first_move = true

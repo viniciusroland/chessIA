@@ -82,7 +82,7 @@ class Pawn {
             this.clicado = false
             //preto andou uma casa
             return true
-        } else if(!this.first_move && new_position.x - old_position.x == direcao*2 && board.board[new_position.x][new_position.y] == 0){
+        } else if(!this.first_move && new_position.x - old_position.x == direcao*2 && board.board[new_position.x][new_position.y] == 0 && board.board[new_position.x - 1][new_position.y] == 0){
             this.contador = 0
             this.clicado = false
             return true
@@ -109,8 +109,8 @@ class Pawn {
             board.updateBoard(old_position, test_position, this)
             this.board_coords = test_position
             this.update_round()
-            this.x = new_position.y * 80
-            this.y = new_position.x * 80
+            this.x = test_position.y * 80
+            this.y = test_position.x * 80
         } else {
 
             this.first_move = true
