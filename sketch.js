@@ -214,11 +214,10 @@ function setup() {
     white_ai_pieces.push(white_horses)
     white_ai_pieces.push(white_bishops)
 
-    console.log(white_ai_pieces)
 
     ai = new AI(white_ai_pieces)
     //setInterval(ai.random_play(), 1500)
-    ai.random_play()
+    //ai.random_play()
 }
 
 

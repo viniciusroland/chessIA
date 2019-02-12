@@ -13,10 +13,7 @@ class AI {
 
         if(peca_em_questao) {
             piece = peca_em_questao
-            console.log('dentro do if')
         } else {
-            console.log('dentro do else')
-
             piece = piece_type[Math.floor(Math.random() * piece_type.length)]
         }
         let old_position = piece.get_old_position(piece.x, piece.y)
