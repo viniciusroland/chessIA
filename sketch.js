@@ -217,23 +217,14 @@ function setup() {
 
     ai = new AI(white_ai_pieces)
     //setInterval(ai.random_play(), 1500)
-    //ai.random_play()
+    //ai.random_play(board.board[1][1])
 }
 
-
+var testando = 0;
 function draw() {
     background(51)
     board.divideBoard()
 
-    //for(let i = 0; i < 8; i++){
-    //    for(let j = 0; j < 8; j++) {
-    //        try {
-    //            board.board[i][j].display()
-    //        } catch {
-    //            console.log('posicao com 0')
-    //        }
-    //    }
-    //}
 
     for(let i = 0; i < white_pawns.length; i++) {
         white_pawns[i].display()

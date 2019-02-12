@@ -95,6 +95,7 @@ class Horse {
             new_position = this.get_new_position(mouseX, mouseY)
 
         }
+        console.log(new_position)
         var direcao;
         old_position = this.get_old_position(this.x, this.y)
         //new_position = this.get_new_position(mouseX, mouseY)
@@ -103,30 +104,6 @@ class Horse {
         } else {
             direcao = 1
         }
-        //condicao 1:
-        //  new_position.y - old_position.y == -2 && new_position.x - old_position.x == -1
-        //
-        //condicao 2:
-        //  new_position.y - old_position.y == -2 && new_position.x - old_position.x == 1
-        //
-        //condicao 3:
-        //  new_position.y - old_position.y == 2 && new_position.x - old_position.x == -1
-        //
-        //condicao 4:
-        //  new_position.y - old_position.y == 2 && new_position.x - old_position.x == 1
-        //
-        //
-        //condicao 5:
-        //  new_position.y - old_position.y == -1 && new_position.x - old_position.x == -2
-        //
-        //condicao 6:
-        //  new_position.y - old_position.y == 1 && new_position.x - old_position.x == -2
-        //
-        //condicao 7:
-        //  new_position.y - old_position.y == -1 && new_position.x - old_position.x == 2
-        //
-        //condicao 8:
-        //  new_position.y - old_position.y == 1 && new_position.x - old_position.x == 2
 
         if(((new_position.y - old_position.y == -2 && new_position.x - old_position.x == -1)
          || (new_position.y - old_position.y == -2 && new_position.x - old_position.x == 1)
