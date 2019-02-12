@@ -218,6 +218,34 @@ function setup() {
     ai = new AI(white_ai_pieces)
     //setInterval(ai.random_play(), 1500)
     //ai.random_play(board.board[1][1])
+    for(let i = 0; i < white_pawns.length; i++) {
+        let test = white_pawns[i].get_available_moves()
+        console.log('pawns', test)
+    }
+
+    for(let i = 0; i < white_horses.length; i++) {
+        let test = white_horses[i].get_available_moves()
+        console.log('horses', test)
+    }
+
+    for(let i = 0; i < white_towers.length; i++) {
+        let test = white_towers[i].get_available_moves()
+        console.log('towers', test)
+    }
+
+    for(let i = 0; i < white_bishops.length; i++) {
+        let test = white_bishops[i].get_available_moves()
+        console.log('bishops', test)
+    }
+
+    for(let i = 0; i < white_queens.length; i++) {
+        let test = white_queens[i].get_available_moves()
+        console.log('queens', test)
+    }
+    for(let i = 0; i < white_kings.length; i++) {
+        let test = white_kings[i].get_available_moves()
+        console.log('kings', test)
+    }
 }
 
 var testando = 0;

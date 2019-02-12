@@ -69,10 +69,15 @@ class Bishop {
         }
     }
 
-    check_move_rules() {
+    check_move_rules(test_position) {
+        if(test_position) {
+            new_position = test_position
+        } else {
+            new_position = this.get_new_position(mouseX, mouseY)
+        }
         var piece_in_front = undefined
         old_position = this.get_old_position(this.x, this.y)
-        new_position = this.get_new_position(mouseX, mouseY)
+        //new_position = this.get_new_position(mouseX, mouseY)
         var caso = this.get_moviment_case(new_position, old_position, this.tile_color)
 
         // 7, 5 ->>>> 4, 2
@@ -485,6 +490,7 @@ class Bishop {
             (new_position.x + new_position.y == 14 && old_position.x + old_position.y == 14))
 
             && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
+                return true
                 this.first_move = true
                 this.eat_pieces(new_position)
                 board.updateBoard(old_position, new_position, this)
@@ -516,6 +522,7 @@ class Bishop {
             (new_position.x + new_position.y == 13 && old_position.x + old_position.y == 13))
 
             && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color){
+               return true
                 this.first_move = true
                 this.eat_pieces(new_position)
                 board.updateBoard(old_position, new_position, this)
@@ -532,6 +539,33 @@ class Bishop {
         this.contador = 0
         this.clicado = false
         console.log('Tabuleiro atual:', board.board)
+        return false
+    }
+
+    get_available_moves() {
+        var available_moves = []
+        let actual_position = this.get_old_position(this.x, this.y)
+        let new_possible_moves = []
+        for(let i = 0; i < 8; i++) {
+            new_possible_moves.push(createVector(actual_position.x + i, actual_position.y + i))
+            new_possible_moves.push(createVector(actual_position.x + i, actual_position.y - i))
+            new_possible_moves.push(createVector(actual_position.x - i, actual_position.y + i))
+            new_possible_moves.push(createVector(actual_position.x - i, actual_position.y - i))
+        }
+
+        for(let i = 0; i < new_possible_moves.length; i++) {
+            let possible_move = new_possible_moves[i]
+            if(possible_move.x >= 0 && possible_move.x < 8 && possible_move.y >= 0 && possible_move.y < 8) {
+                let move_ok = this.check_move_rules(possible_move)
+                console.log(move_ok)
+
+                if(move_ok) {
+                    available_moves.push(possible_move)
+                }
+            }
+        }
+
+        return available_moves
     }
 
     get_moviment_case(new_position, old_position, tile_color) {

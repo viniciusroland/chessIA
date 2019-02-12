@@ -18,6 +18,34 @@ class King {
         this.first_move = false
         this.erro = false
     }
+
+    get_available_moves() {
+        var available_moves = []
+        let actual_position = this.get_old_position(this.x, this.y)
+        let new_possible_moves = []
+        new_possible_moves.push(createVector(actual_position.x - 1, actual_position.y - 1))
+        new_possible_moves.push(createVector(actual_position.x + 1, actual_position.y + 1))
+        new_possible_moves.push(createVector(actual_position.x, actual_position.y - 1))
+        new_possible_moves.push(createVector(actual_position.x, actual_position.y + 1))
+        new_possible_moves.push(createVector(actual_position.x - 1, actual_position.y))
+        new_possible_moves.push(createVector(actual_position.x + 1, actual_position.y))
+        new_possible_moves.push(createVector(actual_position.x - 1, actual_position.y + 1))
+        new_possible_moves.push(createVector(actual_position.x + 1, actual_position.y - 1))
+
+        for(let i = 0; i < new_possible_moves.length; i++) {
+            let possible_move = new_possible_moves[i]
+            if(possible_move.x >= 0 && possible_move.x < 8 && possible_move.y >= 0 && possible_move.y < 8) {
+                let move_ok = this.check_move_rules(possible_move)
+                console.log(move_ok)
+
+                if(move_ok) {
+                    available_moves.push(possible_move)
+                }
+            }
+        }
+
+        return available_moves
+    }
     display() {
          if(!this.clicado) {
             //image(this.img, this.x, this.y, 80, 80)
@@ -56,7 +84,12 @@ class King {
         }
     }
 
-    check_move_rules() {
+    check_move_rules(test_position) {
+        if(test_position) {
+            new_position = test_position
+        } else {
+            new_position = this.get_new_position(mouseX, mouseY)
+        }
         //casos possiveis
         // x -> +1 y-> +1
         //
@@ -74,7 +107,6 @@ class King {
         //
         // x -> -1 y-> +1
         old_position = this.get_old_position(this.x, this.y)
-        new_position = this.get_new_position(mouseX, mouseY)
         
 
         if(((new_position.x - old_position.x == 1 & new_position.y - old_position.y == 1) ||
@@ -86,6 +118,7 @@ class King {
             (new_position.x - old_position.x == 1 & new_position.y - old_position.y == -1) ||
             (new_position.x - old_position.x == -1 & new_position.y - old_position.y == 1)) 
             && board.board[new_position.x][new_position.y].color != this.color) {
+            return true
                 this.first_move = true
                 this.eat_pieces(new_position)
                 board.updateBoard(old_position, new_position, this)
@@ -101,6 +134,7 @@ class King {
         this.contador = 0
         this.clicado = false
         console.log('Tabuleiro atual:', board.board)
+        return false
     }
 
     get_old_position(x, y) {

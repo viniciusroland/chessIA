@@ -25,6 +25,38 @@ class Queen {
             this.tile_color = 'green'
         }
     }
+
+    get_available_moves() {
+        var available_moves = []
+        let actual_position = this.get_old_position(this.x, this.y)
+        let new_possible_moves = []
+        for(let i = 0; i < 8; i++) {
+                new_possible_moves.push(createVector(actual_position.x, actual_position.y + i))
+        }
+        for(let j = 0; j < 8; j++) {
+                new_possible_moves.push(createVector(actual_position.x + j, actual_position.y))
+        }
+        for(let i = 0; i < 8; i++) {
+            new_possible_moves.push(createVector(actual_position.x + i, actual_position.y + i))
+            new_possible_moves.push(createVector(actual_position.x + i, actual_position.y - i))
+            new_possible_moves.push(createVector(actual_position.x - i, actual_position.y + i))
+            new_possible_moves.push(createVector(actual_position.x - i, actual_position.y - i))
+        }
+
+        for(let i = 0; i < new_possible_moves.length; i++) {
+            let possible_move = new_possible_moves[i]
+            if(possible_move.x >= 0 && possible_move.x < 8 && possible_move.y >= 0 && possible_move.y < 8) {
+                let move_ok = this.check_move_rules(possible_move)
+                console.log(move_ok)
+
+                if(move_ok) {
+                    available_moves.push(possible_move)
+                }
+            }
+        }
+
+        return available_moves
+    }
     display() {
          if(!this.clicado) {
             //image(this.img, this.x, this.y, 80, 80)
@@ -63,11 +95,15 @@ class Queen {
         }
     }
 
-    check_move_rules() {
+    check_move_rules(test_position) {
+        if(test_position) {
+            new_position = test_position
+        } else {
+            new_position = this.get_new_position(mouseX, mouseY)
+        }
         var piece_in_front;
         var piece_aside;
         old_position = this.get_old_position(this.x, this.y)
-        new_position = this.get_new_position(mouseX, mouseY)
         var caso = this.get_moviment_case(new_position, old_position, this.tile_color)
 
         if(new_position.x == new_position.y - 6 || new_position.x == new_position.y - 4 || new_position.x == new_position.y - 2 || new_position.x == new_position.y || new_position.x == new_position.y + 2 || new_position.x == new_position.y + 4 || new_position.x == new_position.y + 6) {
@@ -534,6 +570,7 @@ class Queen {
                 (new_position.x + new_position.y == 14 && old_position.x + old_position.y == 14))
                 && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
 
+                    return true
                     this.first_move = true
                     this.eat_pieces(new_position)
                     board.updateBoard(old_position, new_position, this)
@@ -562,6 +599,7 @@ class Queen {
                 (new_position.x + new_position.y == 11 && old_position.x + old_position.y == 11) ||
                 (new_position.x + new_position.y == 13 && old_position.x + old_position.y == 13))
                && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color){
+                    return true
 
                     this.first_move = true
                     this.eat_pieces(new_position)
@@ -575,6 +613,7 @@ class Queen {
         }
         //trocar o true pela condicao dos bishops
         if(new_position.y == old_position.y && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color){
+            return true
             this.first_move = true
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
@@ -583,6 +622,7 @@ class Queen {
             this.x = new_position.y * 80
             this.y = new_position.x * 80
         } else if(new_position.x == old_position.x && piece_aside == 0 && board.board[new_position.x][new_position.y].color != this.color) {
+            return true
             this.first_move = true
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
@@ -596,6 +636,7 @@ class Queen {
         this.contador = 0
         this.clicado = false
         console.log('Tabuleiro atual:', board.board)
+        return false
     }
 
     get_moviment_case(new_position, old_position, tile_color) {

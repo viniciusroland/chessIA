@@ -56,11 +56,15 @@ class Tower {
         }
     }
 
-    check_move_rules() {
+    check_move_rules(test_position) {
+        if(test_position) {
+            new_position = test_position
+        } else {
+            new_position = this.get_new_position(mouseX, mouseY)
+        }
         var piece_in_front;
         var piece_aside;
         old_position = this.get_old_position(this.x, this.y)
-        new_position = this.get_new_position(mouseX, mouseY)
         if(this.color == 'black') {
             var direcao = -1
         } else {
@@ -119,6 +123,7 @@ class Tower {
         }
 
         if(new_position.y == old_position.y && piece_in_front == 0 && board.board[new_position.x][new_position.y].color != this.color) {
+            return true
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
@@ -126,6 +131,7 @@ class Tower {
             this.x = new_position.y * 80
             this.y = new_position.x * 80
         } else if(new_position.x == old_position.x && piece_aside == 0 && board.board[new_position.x][new_position.y].color != this.color){
+            return true
             this.eat_pieces(new_position)
             board.updateBoard(old_position, new_position, this)
             this.board_coords = new_position
@@ -136,6 +142,37 @@ class Tower {
         this.contador = 0
         this.clicado = false
         console.log('Tabuleiro atual:', board.board)
+        return false
+    }
+
+    get_available_moves() {
+        var available_moves = []
+        let actual_position = this.get_old_position(this.x, this.y)
+        let new_possible_moves = []
+        for(let i = 0; i < 8; i++) {
+            if(actual_position.x != i) {
+                new_possible_moves.push(createVector(actual_position.x, actual_position.y + i))
+            }
+        }
+        for(let j = 0; j < 8; j++) {
+            if(actual_position.y != j) {
+                new_possible_moves.push(createVector(actual_position.x + j, actual_position.y))
+            }
+        }
+
+        for(let i = 0; i < new_possible_moves.length; i++) {
+            let possible_move = new_possible_moves[i]
+            if(possible_move.x >= 0 && possible_move.x < 8 && possible_move.y >= 0 && possible_move.y < 8) {
+                let move_ok = this.check_move_rules(possible_move)
+                console.log(move_ok)
+
+                if(move_ok) {
+                    available_moves.push(possible_move)
+                }
+            }
+        }
+
+        return available_moves
     }
 
     get_old_position(x, y) {

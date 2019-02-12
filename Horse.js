@@ -135,6 +135,33 @@ class Horse {
         return false
     }
 
+    get_available_moves() {
+        var available_moves = []
+        let actual_position = this.get_old_position(this.x, this.y)
+        let new_possible_moves = []
+        new_possible_moves.push(createVector(actual_position.x + 2, actual_position.y + 1))
+        new_possible_moves.push(createVector(actual_position.x + 2, actual_position.y - 1))
+        new_possible_moves.push(createVector(actual_position.x + 1, actual_position.y + 2))
+        new_possible_moves.push(createVector(actual_position.x - 1, actual_position.y + 2))
+        new_possible_moves.push(createVector(actual_position.x + 1, actual_position.y - 2))
+        new_possible_moves.push(createVector(actual_position.x - 1, actual_position.y - 2))
+        new_possible_moves.push(createVector(actual_position.x - 2, actual_position.y - 1))
+        new_possible_moves.push(createVector(actual_position.x - 2, actual_position.y + 1))
+
+        for(let i = 0; i < new_possible_moves.length; i++) {
+            let possible_move = new_possible_moves[i]
+            if(possible_move.x >= 0 && possible_move.x < 8 && possible_move.y >= 0 && possible_move.y < 8) {
+                let move_ok = this.check_move_rules(possible_move)
+
+                if(move_ok) {
+                    available_moves.push(possible_move)
+                }
+            }
+        }
+
+        return available_moves
+    }
+
     get_old_position(x, y) {
         //mover esse metodo pras classes de cada peca e nao deixa-lo aqui no Board.js
         for (let i = 0; i < 8; i++) {
