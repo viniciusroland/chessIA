@@ -1,8 +1,10 @@
 console.clear()
+var game_is_over;
 var ai;
 var board;
 var peca_em_questao;
 var white_ai_pieces = []
+var black_ai_pieces = []
 
 var white_pawns = []
 var black_pawns = []
@@ -153,6 +155,7 @@ function setup() {
         white_pawns.push(pawn_w)
         white_ai_pieces.push(pawn_w)
         black_pawns.push(pawn_b)
+        black_ai_pieces.push(pawn_b)
 
     }
 
@@ -164,6 +167,7 @@ function setup() {
     let king_b = new King(black_king, 320, 560, 'black')
     tabuleiro[7][4] = king_b
     black_kings.push(king_b)
+    black_ai_pieces.push(king_b)
 
 
     for (let i = 0; i < 2; i++) {
@@ -176,6 +180,7 @@ function setup() {
         white_towers.push(tower_w)
         white_ai_pieces.push(tower_w)
         black_towers.push(tower_b)
+        black_ai_pieces.push(tower_b)
 
         let horse_w = new Horse(white_horse, 480 - 400 * i, 0, 'white')
         let horse_b = new Horse(black_horse, 480 - 400 * i, 560, 'black')
@@ -186,6 +191,7 @@ function setup() {
         white_horses.push(horse_w)
         white_ai_pieces.push(horse_w)
         black_horses.push(horse_b)
+        black_ai_pieces.push(horse_b)
 
         let bishop_w = new Bishop(white_bishop, 400 - 240 * i, 0, 'white')
         let bishop_b = new Bishop(black_bishop, 400 - 240 * i, 560, 'black')
@@ -196,6 +202,7 @@ function setup() {
         white_bishops.push(bishop_w)
         white_ai_pieces.push(bishop_w)
         black_bishops.push(bishop_b)
+        black_ai_pieces.push(bishop_b)
 
     }
     let queen_w = new Queen(white_queen, 240, 0, 'white')
@@ -206,6 +213,7 @@ function setup() {
     let queen_b = new Queen(black_queen, 240, 560, 'black')
     tabuleiro[7][3] = queen_b
     black_queens.push(queen_b)
+    black_ai_pieces.push(queen_b)
 
     
     board = new Board(8 * tile_size + 1, 8 * tile_size + 1, tabuleiro);
@@ -303,12 +311,15 @@ function draw() {
     for(let i = 0; i < black_queens.length; i++) {
         black_queens[i].display()
     }
+
     if(black_kings.length == 0) {
+        game_is_over = true
         if(confirm('o branco venceu')) {
             location.reload()
         }
     }
     if(white_kings.length == 0) {
+        game_is_over = true
         if(confirm('o preto venceu')) {
             location.reload()
         }

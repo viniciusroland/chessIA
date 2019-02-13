@@ -18,6 +18,15 @@ class Horse {
         this.first_move = false
         this.erro = false
     }
+    move_on_virtual_board(test_position, virtualBoard) {
+        //this.first_move = true
+        //this.eat_pieces(test_position)
+        virtualBoard.updateBoard(old_position, test_position, this)
+        //this.board_coords = test_position
+        //this.update_round()
+        //this.x = test_position.y * 80
+        //this.y = test_position.x * 80
+    }
     display() {
          if(!this.clicado) {
             //image(this.img, this.x, this.y, 80, 80)
@@ -92,7 +101,6 @@ class Horse {
             new_position = this.get_new_position(mouseX, mouseY)
 
         }
-        console.log(new_position)
         var direcao;
         old_position = this.get_old_position(this.x, this.y)
         //new_position = this.get_new_position(mouseX, mouseY)
@@ -118,11 +126,9 @@ class Horse {
 
         } else {
             //errou
-            console.error('ERROU')
         }
         this.contador = 0
         this.clicado = false
-        console.log('Tabuleiro atual:', board.board)
         return false
     }
 
@@ -187,31 +193,37 @@ class Horse {
                 removeAr(white_pawns, piece_in_the_position)
                 removeAr(black_pawns, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
 
             } else if(piece_in_the_position.name == 'Tower') {
                 removeAr(white_towers, piece_in_the_position)
                 removeAr(black_towers, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
              
             } else if(piece_in_the_position.name == 'Horse') {
                 removeAr(white_horses, piece_in_the_position)
                 removeAr(black_horses, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
 
             } else if(piece_in_the_position.name == 'Bishop') {
                 removeAr(white_bishops, piece_in_the_position)
                 removeAr(black_bishops, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
 
             } else if(piece_in_the_position.name == 'Queen') {
                 removeAr(white_queens, piece_in_the_position)
                 removeAr(black_queens, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
 
             } else if(piece_in_the_position.name == 'King') {
                 removeAr(white_kings, piece_in_the_position)
                 removeAr(black_kings, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
             }
 
         }

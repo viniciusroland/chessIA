@@ -18,6 +18,16 @@ class Tower {
         this.first_move = false
         this.erro = false
     }
+    move_on_virtual_board(test_position, virtualBoard) {
+        //this.first_move = true
+        //this.eat_pieces(test_position)
+        virtualBoard.updateBoard(old_position, test_position, this)
+        //this.board_coords = test_position
+        //this.update_round()
+        //this.x = test_position.y * 80
+        //this.y = test_position.x * 80
+
+    }
     display() {
          if(!this.clicado) {
             //image(this.img, this.x, this.y, 80, 80)
@@ -159,7 +169,6 @@ class Tower {
         }
         this.contador = 0
         this.clicado = false
-        console.log('Tabuleiro atual:', board.board)
         return false
     }
 
@@ -168,21 +177,22 @@ class Tower {
         let actual_position = this.get_old_position(this.x, this.y)
         let new_possible_moves = []
         for(let i = 0; i < 8; i++) {
-            if(actual_position.x != i) {
-                new_possible_moves.push(createVector(actual_position.x, actual_position.y + i))
-            }
+            new_possible_moves.push(createVector(actual_position.x, actual_position.y + i))
         }
         for(let j = 0; j < 8; j++) {
-            if(actual_position.y != j) {
-                new_possible_moves.push(createVector(actual_position.x + j, actual_position.y))
-            }
+            new_possible_moves.push(createVector(actual_position.x + j, actual_position.y))
+        }
+        for(let i = 0; i < 8; i++) {
+            new_possible_moves.push(createVector(actual_position.x, actual_position.y - i))
+        }
+        for(let j = 0; j < 8; j++) {
+            new_possible_moves.push(createVector(actual_position.x - j, actual_position.y))
         }
 
         for(let i = 0; i < new_possible_moves.length; i++) {
             let possible_move = new_possible_moves[i]
             if(possible_move.x >= 0 && possible_move.x < 8 && possible_move.y >= 0 && possible_move.y < 8) {
                 let move_ok = this.check_move_rules(possible_move)
-                console.log(move_ok)
 
                 if(move_ok) {
                     available_moves.push(possible_move)
@@ -227,31 +237,37 @@ class Tower {
                 removeAr(white_pawns, piece_in_the_position)
                 removeAr(black_pawns, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
 
             } else if(piece_in_the_position.name == 'Tower') {
                 removeAr(white_towers, piece_in_the_position)
                 removeAr(black_towers, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
              
             } else if(piece_in_the_position.name == 'Horse') {
                 removeAr(white_horses, piece_in_the_position)
                 removeAr(black_horses, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
 
             } else if(piece_in_the_position.name == 'Bishop') {
                 removeAr(white_bishops, piece_in_the_position)
                 removeAr(black_bishops, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
 
             } else if(piece_in_the_position.name == 'Queen') {
                 removeAr(white_queens, piece_in_the_position)
                 removeAr(black_queens, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
 
             } else if(piece_in_the_position.name == 'King') {
                 removeAr(white_kings, piece_in_the_position)
                 removeAr(black_kings, piece_in_the_position)
                 removeAr(white_ai_pieces, piece_in_the_position)
+                removeAr(black_ai_pieces, piece_in_the_position)
             }
 
         }
