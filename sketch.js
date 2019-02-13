@@ -40,6 +40,13 @@ function removeAr(array, item) {
         array.splice(index, 1);
     }
 }
+function findAr(array, item) {
+    for(let i = 0; i < array.length; i++) {
+        if(array[i] == item) {
+            return array[i]
+        }
+    }
+}
 
 function moveAI() {
     var virtual_board = []
@@ -48,12 +55,15 @@ function moveAI() {
     }
     var board_emulation = new Board(0, 0, virtual_board)
 
-    var best_move = ai.minimaxRoot(board_emulation, 2, true)
+    var best_move = ai.minimaxRoot(board_emulation, 3, true)
 
 
+    //pegar a peca real nao a emulacao
     let piece = best_move[0]
+    //let real_piece = findAr(white_ai_pieces, piece)
     let move_ = best_move[1]
 
+    //real_piece.move(move_)
     piece.move(move_)
 
     counting2 = -1

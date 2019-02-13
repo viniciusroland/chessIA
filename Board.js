@@ -24,6 +24,7 @@ class Board {
     }
 
     updateBoard(old_position, new_position, piece) {
+        console.log('troquei')
         this.board[old_position.x][old_position.y] = 0
         this.board[new_position.x][new_position.y] = piece
     }

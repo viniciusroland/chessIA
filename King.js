@@ -34,7 +34,8 @@ class King {
 
             this.first_move = true
             this.eat_pieces(test_position)
-            board.updateBoard(old_position, test_position, this)
+            let old = this.get_old_position(this.x, this.y)
+            board.updateBoard(old, test_position, this)
             this.board_coords = test_position
             this.x = test_position.y * 80
             this.y = test_position.x * 80
