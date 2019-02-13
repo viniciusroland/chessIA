@@ -4,8 +4,10 @@ class Board {
         this.board = tabuleiro
         this.width = width
         this.height = height
-        this.newest_0;
-        this.newest_piece;
+        this.newest_0 = []
+        this.newest_piece = []
+        //this.newest_0;
+        //this.newest_piece;
     }
 
     divideBoard() {
@@ -30,16 +32,22 @@ class Board {
         let old = piece.get_old_position(piece.x, piece.y)
 
         this.board[old.x][old.y] = 0
-        this.newest_0 = old
+        //this.newest_0 = old
+        this.newest_0.push(old)
 
         this.board[new_position.x][new_position.y] = piece
-        this.newest_piece = new_position
+        //this.newest_piece = new_position
+        this.newest_piece.push(new_position)
 
     }
 
-    undo_move() {
-        this.board[this.newest_0.x][this.newest_0.y] = this.board[this.newest_piece.x][this.newest_piece.y]
-        this.board[this.newest_piece.x][this.newest_piece.y] = 0
+    undo_move(count) {
+        //this.board[this.newest_0.x][this.newest_0.y] = this.board[this.newest_piece.x][this.newest_piece.y]
+        //this.board[this.newest_piece.x][this.newest_piece.y] = 0
+
+        this.board[this.newest_0[count].x][this.newest_0[count].y] = this.board[this.newest_piece[count].x][this.newest_piece[count].y]
+        this.board[this.newest_piece[count].x][this.newest_piece[count].y] = 0
+
         //this.newest_piece = undefined;
         //this.newest_0 = undefined;
     }

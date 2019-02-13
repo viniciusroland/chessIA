@@ -18,6 +18,7 @@ class AI {
     }
 
     minimaxRoot(boardEmulation, depth, maximizingPlayer){
+        counting2++
         var all_moves_and_pieces = boardEmulation.get_all_possible_moves(maximizingPlayer)
         var bestMove = -9999;
 
@@ -31,13 +32,14 @@ class AI {
 
             var value = this.minimax(-10000, 10000, boardEmulation, depth - 1, !maximizingPlayer)
 
-            boardEmulation.undo_move();
+            boardEmulation.undo_move(counting2);
             if(value >= bestMove) {
                 bestMove = value;
                 bestMoveFound = newGameMove;
             }
         }
         console.log('melhor movimento', bestMoveFound)
+
         //bestMoveFound[0] eh a peca que ira se mover
         //bestMoveFound[1] eh o movimento da peca em questao
         return bestMoveFound;
@@ -46,11 +48,12 @@ class AI {
 
     
     minimax(alpha, beta, boardEmulation, depth, maximizingPlayer) {
+        counting1++
         var all_moves_and_pieces = boardEmulation.get_all_possible_moves(maximizingPlayer)
 
         //boardEmulation eh um board que simula um movimento de alguma peca
 
-        if (depth === 0) {
+        if (depth == 0) {
             //console.warn('fim do minimax', boardEmulation.calculate_total_value())
             return boardEmulation.calculate_total_value()
         }
@@ -70,7 +73,7 @@ class AI {
                 //if(evaluate > maxEval) {
                 //    maxEval = evaluate
                 //}
-                boardEmulation.undo_move()
+                boardEmulation.undo_move(counting1)
                 alpha = Math.max(alpha, maxEval)
                 if( beta <= alpha ) {
                     return maxEval
@@ -89,7 +92,7 @@ class AI {
                 //if(evaluate < minEval) {
                 //    minEval = evaluate
                 //}
-                boardEmulation.undo_move()
+                boardEmulation.undo_move(counting1)
                 beta = Math.min(beta, minEval)
                 if( beta <= alpha ){
                     return minEval

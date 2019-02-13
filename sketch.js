@@ -1,4 +1,6 @@
 console.clear()
+var counting1 = -1
+var counting2 = -1
 var game_is_over;
 var ai;
 var board;
@@ -37,6 +39,28 @@ function removeAr(array, item) {
     if (index !== -1) {
         array.splice(index, 1);
     }
+}
+
+function moveAI() {
+    var virtual_board = []
+    for(let j = 0; j < 8; j++){
+        virtual_board[j] = board.board[j].slice(0)
+    }
+    var board_emulation = new Board(0, 0, virtual_board)
+
+    var best_move = ai.minimaxRoot(board_emulation, 2, true)
+
+
+    let piece = best_move[0]
+    let move_ = best_move[1]
+
+    piece.move(move_)
+
+    counting2 = -1
+    counting1 = -1
+
+    return
+
 }
 
 function preload() {

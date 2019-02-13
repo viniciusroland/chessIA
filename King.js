@@ -36,9 +36,9 @@ class King {
             this.eat_pieces(test_position)
             board.updateBoard(old_position, test_position, this)
             this.board_coords = test_position
-            this.update_round()
             this.x = test_position.y * 80
             this.y = test_position.x * 80
+            this.update_round()
         } else {
 
             this.first_move = true
