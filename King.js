@@ -3,9 +3,9 @@ var new_position;
 class King {
     constructor(image, x, y, color) {
         if(color == 'white') {
-            this.value = 900
+            this.value = 600
         } else {
-            this.value = -900
+            this.value = -600
         }
         this.name = this.constructor.name
         this.img = image
@@ -108,6 +108,9 @@ class King {
             //volta peca para posicao inicial caso usuario clique na mesma casa que estava para refazer a jogada
             if(this.check_move_rules()){
                 this.move()
+                console.log('movendo AI')
+                setTimeout(moveAI, 750)
+
             }
         }
     }

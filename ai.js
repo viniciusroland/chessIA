@@ -18,6 +18,8 @@ class AI {
     }
 
     minimaxRoot(boardEmulation, depth, maximizingPlayer){
+        //var tabuleiro = JSON.parse(JSON.stringify(board_Emulation))
+        //var boardEmulation = new Board(0, 0, tabuleiro)
         counting2++
         var all_moves_and_pieces = boardEmulation.get_all_possible_moves(maximizingPlayer)
         var bestMove = -9999;
@@ -29,7 +31,6 @@ class AI {
             let piece = newGameMove[0]
             let test_position = newGameMove[1]
             boardEmulation.do_move(piece, test_position)
-
             var value = this.minimax(-10000, 10000, boardEmulation, depth - 1, !maximizingPlayer)
 
             boardEmulation.undo_move(counting2);
@@ -47,7 +48,15 @@ class AI {
     }
 
     
-    minimax(alpha, beta, boardEmulation, depth, maximizingPlayer) {
+    minimax(alpha, beta, board_Emulation, depth, maximizingPlayer) {
+        var len = board.board.length
+        let tabuleiro = new Array(len); // boost in Safari
+        for (var i=0; i<len; ++i) {
+            tabuleiro[i] = board_Emulation.board[i].slice(0);
+        }
+        //var tabuleiro = JSON.parse(JSON.stringify(board_Emulation.board))
+        var boardEmulation = new Board(0, 0, tabuleiro)
+        tabuleiro = undefined
         counting1++
         var all_moves_and_pieces = boardEmulation.get_all_possible_moves(maximizingPlayer)
 

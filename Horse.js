@@ -57,6 +57,8 @@ class Horse {
             //volta peca para posicao inicial caso usuario clique na mesma casa que estava para refazer a jogada
             if(this.check_move_rules()){
                 this.move()
+                console.log('movendo AI')
+                setTimeout(moveAI, 750)
 
             }
             
@@ -77,7 +79,7 @@ class Horse {
             this.first_move = true
             this.eat_pieces(test_position)
             let old = this.get_old_position(this.x, this.y)
-            board.updateBoard(old_position, test_position, this)
+            board.updateBoard(old, test_position, this)
             this.board_coords = test_position
             this.x = test_position.y * 80
             this.y = test_position.x * 80

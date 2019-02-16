@@ -1,6 +1,8 @@
 class Board {
 
     constructor(width, height, tabuleiro) {
+
+        this.primitive_board = tabuleiro;
         this.board = tabuleiro
         this.width = width
         this.height = height
@@ -24,7 +26,6 @@ class Board {
     }
 
     updateBoard(old_position, new_position, piece) {
-        console.log('troquei')
         this.board[old_position.x][old_position.y] = 0
         this.board[new_position.x][new_position.y] = piece
     }
@@ -36,13 +37,15 @@ class Board {
         //this.newest_0 = old
         this.newest_0.push(old)
 
+
         this.board[new_position.x][new_position.y] = piece
         //this.newest_piece = new_position
         this.newest_piece.push(new_position)
 
     }
 
-    undo_move(count) {
+    undo_move(counting) {
+        let count = 0
         //this.board[this.newest_0.x][this.newest_0.y] = this.board[this.newest_piece.x][this.newest_piece.y]
         //this.board[this.newest_piece.x][this.newest_piece.y] = 0
 

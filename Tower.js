@@ -57,6 +57,9 @@ class Tower {
             //volta peca para posicao inicial caso usuario clique na mesma casa que estava para refazer a jogada
             if(this.check_move_rules()){
                 this.move()
+                console.log('movendo AI')
+                setTimeout(moveAI, 750)
+
             }
         }
     }

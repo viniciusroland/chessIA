@@ -40,6 +40,18 @@ function removeAr(array, item) {
         array.splice(index, 1);
     }
 }
+var seen;
+seen = [];
+
+function replacer(key, value) {
+  if (value != null && typeof value == "object") {
+    if (seen.indexOf(value) >= 0) {
+      return;
+    }
+    seen.push(value);
+  }
+  return value;
+}
 function findAr(array, item) {
     for(let i = 0; i < array.length; i++) {
         if(array[i] == item) {
@@ -47,29 +59,47 @@ function findAr(array, item) {
         }
     }
 }
-
+var virtual_board
+var v2
+var b1
+var b2
 function moveAI() {
-    var virtual_board = []
-    for(let j = 0; j < 8; j++){
-        virtual_board[j] = board.board[j].slice(0)
-    }
-    var board_emulation = new Board(0, 0, virtual_board)
 
-    var best_move = ai.minimaxRoot(board_emulation, 3, true)
+    //v2 = JSON.parse(JSON.stringify(board.board, replacer))
+    //b2 = new Board(1, 1, v2)
+    //for(let j = 0; j < 8; j++){
+    //    virtual_board[j] = board.board[j].slice(0)
+    //}
+    //var board_emulation = new Board(0, 0, virtual_board)
+    var len = board.board.length
+    var copy = new Array(len); // boost in Safari
+    for (var i=0; i<len; ++i) {
+        copy[i] = board.board[i].slice(0);
+    }
+
+    //console.log(copy)
+    b2 = new Board(1, 1, copy)
+    //console.log('aqui')
+    var best_move = ai.minimaxRoot(b2, 3, true)
 
 
     //pegar a peca real nao a emulacao
     let piece = best_move[0]
-    //let real_piece = findAr(white_ai_pieces, piece)
+    let real_piece = findAr(white_ai_pieces, piece)
     let move_ = best_move[1]
 
-    //real_piece.move(move_)
-    piece.move(move_)
+    real_piece.move(move_)
+    ////piece.move(move_)
 
     counting2 = -1
     counting1 = -1
 
+    v2 = undefined
+    b2 = undefined
+    copy = undefined
+
     return
+
 
 }
 
